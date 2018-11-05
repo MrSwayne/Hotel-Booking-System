@@ -291,3 +291,21 @@ INSERT INTO table CUSTOMERS ('Lucius','Mcguire','26/10/2018');
 INSERT INTO table CUSTOMERS ('Elizabeth','Joseph','28/10/2018');
 INSERT INTO table CUSTOMERS ('Stacy','Gray','28/10/2018');
 INSERT INTO table CUSTOMERS ('Germane','Gilmore','26/10/2018');
+
+INSERT INTO TABLE USERS ('Caolan','McDonagh',TRUE,'nana');
+INSERT INTO TABLE USERS ('Ian','Duggan',FALSE,'devops');
+INSERT INTO TABLE USERS ('Adam','Swayne',TRUE,'Apple1');
+INSERT INTO TABLE USERS ('Sabina','Taddei',FALSE,'MIA');
+INSERT INTO TABLE USERS ('Patryk','Marczak',FALSE,'easy');
+
+INSERT TABLE HOTELS ('The Swayne','Netherlands','Amsterdam',70);
+INSERT TABLE HOTELS ('The Duggans','Ireland','Galway',50);
+INSERT TABLE HOTELS ('The McDonaghs','Iceland','Reykjavik',25);
+INSERT TABLE HOTELS ('The Taddeis','Italy','Rome',150);
+INSERT TABLE HOTELS ('The Marczaks','Japan','Kyoto',200);
+INSERT TABLE HOTELS ('Azure Hotel','Germany','Berlin',120);
+INSERT TABLE HOTELS ('Sapphire Hotel','England','London',300);
+INSERT TABLE HOTELS ('Bronze Motel','France','Lyon',80);
+INSERT TABLE HOTELS ('Stellar Hotel','Spain','Barcelona',110);
+INSERT TABLE HOTELS ('Atlantic Hotel','Portugal','Lisbon',60);
+INSERT TABLE HOTELS ('Drizzle Hotel','USA','New York',500);
