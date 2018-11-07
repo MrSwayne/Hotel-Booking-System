@@ -60,9 +60,7 @@ CREATE TABLE IF NOT EXISTS users (
     LastName varchar(40)  NOT NULL,
     IsManager boolean  NOT NULL,
     Password varchar(40)  NOT NULL,
-    Hid int  NOT NULL,
     PRIMARY KEY (Uid),
-    FOREIGN KEY (Hid) REFERENCES hotels(Hid)
 );
 
 INSERT INTO table Guests ('Vera','Irwin','29/10/2018');
