@@ -4,7 +4,7 @@ public class GuestModel
 {
 	private int gID, totalSpent, memLev;
 	private String first_name, last_name;
-	private date memSince;
+	private String memSince;
 	
 	public int getGID()
 	{
@@ -41,12 +41,17 @@ public class GuestModel
 		return first_name;
 	}
 	
-	public setLastName(String last_name)
+	public void setLastName(String last_name)
 	{
 		this.last_name = last_name;
 	}
 	
-	public date getMemSince()
+	public String getLastName()
+	{
+		return this.last_name;
+	}
+	
+	public String getMemSince()
 	{
 		return memSince;
 	}

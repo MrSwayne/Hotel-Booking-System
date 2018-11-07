@@ -7,6 +7,11 @@ public class RoomModel
 	private boolean available = true;
 	private double price;
 	
+	public RoomModel() 
+	{
+		
+	}
+	
 	public int getHID()
 	{
 		return hID;
@@ -39,7 +44,7 @@ public class RoomModel
 	
 	public boolean getAvailability()
 	{
-		return boolean;
+		return available;
 	}
 	
 	public void setPrice(double price)

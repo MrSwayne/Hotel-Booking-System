@@ -2,8 +2,13 @@ package Models;
 
 public class BookingModel
 {
-	private int gID, rID, bID, 
-	private date date_in, date_out;
+	private int gID, rID, bID; 
+	private String date_in, date_out;
+	
+	public BookingModel()
+	{
+		
+	}
 	
 	public int getGID()
 	{
@@ -20,22 +25,22 @@ public class BookingModel
 		return bID;
 	}
 	
-	public void setDateIn(date date)
+	public void setDateIn(String date)
 	{
 		this.date_in = date;
 	}
 	
-	public date getDateIn()
+	public String getDateIn()
 	{
 		return date_in;
 	}
 	
-	public void setDateOut(date date)
+	public void setDateOut(String date)
 	{
 		this.date_out = date;
 	}
 	
-	public date getDateOut()
+	public String getDateOut()
 	{
 		return date_out;
 	}

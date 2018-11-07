@@ -4,8 +4,13 @@ public class LoginModel
 {
 	private String username, password;
 
+	public LoginModel()
+	{
+		
+	}
+	
 	public void setUsername (String username){
-		this.username;
+		this.username = username;
 	}
 
 	public String getPassword(){
