@@ -1,4 +1,4 @@
-package Views;
+package hbs.views;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -10,12 +10,15 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import hbs.managers.BookingManager;
+
 public class BookingView extends JFrame implements ActionListener {
 	JPanel mainPanel = new JPanel();
 	private JTextField fnameField;
 	private JTextField lnameField;
 	private JTextField dateInField;
 	private JTextField dateOutField;
+	
 	public static void main(String [] args)
 	{
 		BookingView run = new BookingView();
@@ -28,7 +31,7 @@ public class BookingView extends JFrame implements ActionListener {
 		this.setTitle("Booking");
 	}
 
-	private void book() {
+	protected void book() {
 		mainPanel = new JPanel(new GridLayout(3,1));
 		
 		JPanel fName = new JPanel();
@@ -76,11 +79,12 @@ public class BookingView extends JFrame implements ActionListener {
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		BookingManager controller = new BookingManager(this);
 		String btnPressed = e.getActionCommand();
 		if(btnPressed.equalsIgnoreCase("submit"))
 		{
+				controller.checkBooking(fnameField.getText(), lnameField.getText(), dateInField.getText(), dateOutField.getText());
 				this.remove(mainPanel);
-				System.exit(0);
 			
 		}
 	}
