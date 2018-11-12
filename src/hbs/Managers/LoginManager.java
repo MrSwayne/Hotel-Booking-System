@@ -1,9 +1,8 @@
 package hbs.managers;
 
 
-import hbs.views.LoginView;
 import hbs.models.LoginModel;
-
+import hbs.views.LoginView;
 //import view and model.
 public class LoginManager{
 	private LoginView view;
@@ -17,11 +16,11 @@ public class LoginManager{
 
 	public void checkCredentials(String username,String password){
 		model.setUsername(username);
-		//model.getCredentials();
+		model.getCredentials();
 		if(password.equals(model.getPassword())){
-			//do stuff
+			view.setMessage("Login Success!");
 		}else{
-			//view.setErrorMessage("Login Failed! Try Again.");
+			view.setMessage("Login Failed! Try Again.");
 		}
 	}
 }
