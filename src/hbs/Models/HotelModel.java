@@ -9,6 +9,10 @@ public class HotelModel
 	{
 		return rooms;
 	}
+	public int setRooms(int rms)
+	{
+	    this.rooms = rms;
+	}
 	
 	public int getHID()
 	{
