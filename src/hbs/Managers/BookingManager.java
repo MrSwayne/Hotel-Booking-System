@@ -4,17 +4,20 @@ package hbs.managers;
 import hbs.models.BookingModel;
 import hbs.models.GuestModel;
 import hbs.views.BookingView;
+import hbs.lambda.newBooking;
 //import view and model.
 public class BookingManager{
 	private BookingView view;
 	private BookingModel model;
 	private GuestModel model2;
+	private newBooking newBook;
 
 	public BookingManager(BookingView view)
 	{
 		this.view = view;
 		model = new BookingModel();
 		model2 = new GuestModel();
+		newBook = new newBooking();
 	}
 
 	public void checkBooking(String fName,String lName,String date_in,String date_out) {
@@ -28,7 +31,7 @@ public class BookingManager{
 		
 		if(fName == model2.getFirstName() && lName == model2.getLastName() )
 		{
-			// figure out the discount? or call payment view?
+			newBook.bookingTransaction();
 		}
 		else
 		{
