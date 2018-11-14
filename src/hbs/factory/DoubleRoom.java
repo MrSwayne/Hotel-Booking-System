@@ -1,6 +1,6 @@
 package hbs.factory;
 
-import hbs.interfaces.IRoom
+import hbs.interfaces.IRoom;
 import java.util.Date;
 
 public class DoubleRoom implements IRoom {

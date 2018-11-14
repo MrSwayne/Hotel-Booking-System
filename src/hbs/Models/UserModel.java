@@ -1,17 +1,27 @@
-package hbs.models;
+package hbs.Models;
 
 public class UserModel
 {
-	private int uID, hID;
-	private String firstName, lastName, password;
+	private String firstName, lastName, password,uID,hID;
 	private boolean isManager;	
 	
-	public int getUID()
+	public UserModel(String uID, String firstName, boolean isManager, String hID) {
+		this.uID = uID;
+		this.firstName = firstName;
+		this.isManager = isManager;
+		this.hID = hID;
+	}
+
+	public UserModel() {
+		
+	}
+
+	public String getUID()
 	{
 		return uID;
 	}
 	
-	public int getHID()
+	public String getHID()
 	{
 		return hID;
 	}

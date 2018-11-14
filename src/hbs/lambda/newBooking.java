@@ -1,11 +1,11 @@
 package hbs.lambda;
 
 import hbs.lambda.common.Keys;
-import hbs.models.HotelModel;
+import hbs.Models.HotelModel;
 
 import java.util.Map;
 
-import hbs.HotelDBController;
+import hbs.database.HotelDBController;
 
 public class newBooking implements CustomerBookingHandler {
 

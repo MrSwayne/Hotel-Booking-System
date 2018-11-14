@@ -1,4 +1,4 @@
-package hbs.models;
+package hbs.Models;
 
 public class HotelModel
 {
@@ -9,7 +9,7 @@ public class HotelModel
 	{
 		return rooms;
 	}
-	public int setRooms(int rms)
+	public void setRooms(int rms)
 	{
 	    this.rooms = rms;
 	}

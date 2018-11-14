@@ -1,16 +1,16 @@
-package hbs.views;
+package hbs.Views;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import hbs.managers.BookingManager;
+import hbs.Managers.BookingManager;
 
 public class BookingView extends JFrame implements ActionListener {
 	JPanel mainPanel = new JPanel();
@@ -18,20 +18,13 @@ public class BookingView extends JFrame implements ActionListener {
 	private JTextField lnameField;
 	private JTextField dateInField;
 	private JTextField dateOutField;
+	private JTextField roomsBooked;
+	private JTextField type;
 	
-	public static void main(String [] args)
-	{
-		BookingView run = new BookingView();
-		run.book();
-	}
-	
-	public BookingView() {
+	public void Booking() {
 		this.setLocationRelativeTo(null);//setting to the center of the screen
 		this.setVisible(true);
 		this.setTitle("Booking");
-	}
-
-	protected void book() {
 		mainPanel = new JPanel(new GridLayout(3,1));
 		
 		JPanel fName = new JPanel();
@@ -57,10 +50,24 @@ public class BookingView extends JFrame implements ActionListener {
 
 		JPanel dateOutPanel = new JPanel();
 		JLabel dateOutLabel = new JLabel("Date out: ",JLabel.CENTER);
-		dateOutField = new JPasswordField("",10);
+		dateOutField = new JTextField("",10);
 		dateOutPanel.setVisible(true);
 		dateOutPanel.add(dateOutLabel);
 		dateOutPanel.add(dateOutField);
+		
+		JPanel roomsPanel = new JPanel();
+		JLabel roomLabel = new JLabel("Rooms: ",JLabel.CENTER);
+		roomsBooked= new JTextField("",10);
+		roomsPanel.setVisible(true);
+		roomsPanel.add(roomLabel);
+		roomsPanel.add(roomsBooked);
+		
+		JPanel typePanel = new JPanel();
+		JLabel typeLabel = new JLabel("Type: ",JLabel.CENTER);
+		type = new JTextField("",10);
+		typePanel.setVisible(true);
+		typePanel.add(typeLabel);
+		typePanel.add(type);
 		
 		JPanel control = new JPanel();
 		control.setVisible(true);
@@ -73,19 +80,22 @@ public class BookingView extends JFrame implements ActionListener {
 		mainPanel.add(lName);
 		mainPanel.add(dateInPanel);
 		mainPanel.add(dateOutPanel);
+		mainPanel.add(typePanel);
+		mainPanel.add(roomsPanel);
 		mainPanel.add(control);
 		this.add(mainPanel);
 		this.pack();
 	}
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		BookingManager controller = new BookingManager(this);
-		String btnPressed = e.getActionCommand();
-		if(btnPressed.equalsIgnoreCase("submit"))
+
+@Override
+public void actionPerformed(ActionEvent e) {
+	String btnPressed = e.getActionCommand();
+	BookingManager controller = new BookingManager(this);
+	if(btnPressed.equalsIgnoreCase("submit"))
 		{
-				controller.checkBooking(fnameField.getText(), lnameField.getText(), dateInField.getText(), dateOutField.getText());
-				this.remove(mainPanel);
-			
+			controller.checkBooking(fnameField.getText(), lnameField.getText(), dateInField.getText(), dateOutField.getText(),roomsBooked.getText(),type.getText());
+			this.remove(mainPanel);
+		
 		}
 	}
 }

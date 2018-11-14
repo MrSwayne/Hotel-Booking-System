@@ -1,4 +1,4 @@
-package hbs.models;
+package hbs.Models;
 
 public class BookingModel
 {
@@ -10,6 +10,12 @@ public class BookingModel
 		
 	}
 	
+	public BookingModel(int gID, String date_in, String date_out) {
+		this.gID = gID;
+		this.date_in = date_in;
+		this.date_out = date_out;
+	}
+
 	public int getGID()
 	{
 		return gID;

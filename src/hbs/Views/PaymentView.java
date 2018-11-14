@@ -1,4 +1,4 @@
-package hbs.views;
+package hbs.Views;
 
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -27,7 +27,7 @@ public class PaymentView extends JFrame implements ActionListener {
 	private JButton payBttn;
 	private JButton cancelBttn;
 	
-	public PaymentView() {
+	public void PaymentView() {
 			JPanel container = new JPanel();
 			container.setLayout(new BoxLayout(container, BoxLayout.PAGE_AXIS));
 			nameF = new JTextField("", 15);

@@ -3,8 +3,8 @@ package hbs.lambda;
 import java.util.ArrayList;
 import java.util.List;
 
-import database.HotelDBControllerl;
-import hbs.models.HotelModel;
+import hbs.database.HotelDBController;
+import hbs.Models.HotelModel;
 
 public class BookingTransaction {
     
@@ -12,7 +12,7 @@ public class BookingTransaction {
     {
 	HotelDBController db = new HotelDBController();
 	
-	db.decremenentHotelRooms(hID,rooms);
+	db.decrementHotelsRooms(hID,rooms);
 	
 	
     }

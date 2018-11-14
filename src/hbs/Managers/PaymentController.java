@@ -1,12 +1,12 @@
-package hbs.managers;
+package hbs.Managers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import com.stripe.Stripe;
 
-import hbs.models.*;
-import hbs.views.*;
+import hbs.Models.*;
+import hbs.Views.*;
 
 public class PaymentController {
 	
@@ -53,4 +53,3 @@ public class PaymentController {
 		//guest.getCredentials
 	}
 }
-

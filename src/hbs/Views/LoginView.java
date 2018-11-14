@@ -1,80 +1,78 @@
-package hbs.views;
+package hbs.Views;
 
-import java.awt.Color;
-import java.awt.Container;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPasswordField;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
-import hbs.managers.LoginManager;
+import hbs.Managers.LoginManager;
 
-public class LoginView extends JFrame {
-
-    /**
+public class LoginView extends JFrame implements ActionListener {
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-    private JTextField txtUsername;
-    private JPasswordField txtPassword;
-    private JButton btnLogin;
-    private JLabel lblErrorMessage;
-
-    public LoginView() {
-        setTitle("Login");
-        setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 400, 250);
-        Container contentPane = this.getContentPane();
-        contentPane.setLayout(null);
-
-        JLabel lblUsername = new JLabel("Username:");
-        lblUsername.setHorizontalAlignment(SwingConstants.RIGHT);
-        lblUsername.setBounds(10, 11, 120, 25);
-        contentPane.add(lblUsername);
-
-        txtUsername = new JTextField();
-        txtUsername.setBounds(140, 11, 200, 25);
-        contentPane.add(txtUsername);
-
-        JLabel lblPassword = new JLabel("Password:");
-        lblPassword.setHorizontalAlignment(SwingConstants.RIGHT);
-        lblPassword.setBounds(10, 52, 120, 25);
-        contentPane.add(lblPassword);
-
-        txtPassword = new JPasswordField();
-        txtPassword.setBounds(140, 52, 200, 25);
-        contentPane.add(txtPassword);
-
-        LoginManager controller = new LoginManager(this);
-        btnLogin = new JButton("Login");
-        btnLogin.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                controller.checkCredentials(txtUsername.getText(), new String(txtPassword.getPassword()));
-            }
-        });
-        btnLogin.setBounds(251, 93, 89, 25);
-        contentPane.add(btnLogin);
-
-        lblErrorMessage = new JLabel("");
-        lblErrorMessage.setHorizontalAlignment(SwingConstants.RIGHT);
-        lblErrorMessage.setForeground(Color.RED);
-        lblErrorMessage.setBounds(10, 151, 330, 25);
-        contentPane.add(lblErrorMessage);
-    }
-
-    public void setMessage(String errorMessage) {
-        lblErrorMessage.setText(errorMessage);
-    }
-
-    public static void main(String args[]){
-        LoginView view = new LoginView();
-        view.setVisible(true);
-    }
+	JPanel mainPanel = new JPanel();
+	private JTextField userField;
+	private JTextField passwordField;
+	
+	public void Login() {
+	    	this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		this.setLocationRelativeTo(null);//setting to the center of the screen
+		this.setVisible(true);
+		this.setTitle("Login");
+		mainPanel = new JPanel(new GridLayout(3,1));
+		
+		JPanel user = new JPanel();
+		JLabel userLabel = new JLabel("Username: ",JLabel.CENTER);
+		userField = new JTextField("",10);
+		
+		user.add(userLabel);
+		user.add(userField);
+		user.setVisible(true);
+		
+		JPanel password = new JPanel();
+		JLabel passwrodLabel = new JLabel("Password: ",JLabel.CENTER);
+		passwordField = new JTextField("",10);
+		password.setVisible(true);
+		password.add(passwrodLabel);
+		password.add(passwordField);
+		
+		JPanel control = new JPanel();
+		control.setVisible(true);
+		JButton button = new JButton("Login");
+		button.setActionCommand("login");
+		button.addActionListener(this);
+		control.add(button);
+		
+		mainPanel.add(user);
+		mainPanel.add(password);
+		mainPanel.add(control);
+		this.add(mainPanel);
+		this.pack();
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+	    	//HotelSelectorView view = new HotelSelectorView();
+	    	MainMenuView view = new MainMenuView();
+	    	LoginManager control = new LoginManager(this);
+		String btnPressed = e.getActionCommand();
+		if(btnPressed.equalsIgnoreCase("login"))
+		{
+			if(control.checkCredentials(userField.getText(), passwordField.getText())) {
+				this.setVisible(false);
+				this.remove(mainPanel);
+				view.Menu();
+			}else {
+				System.exit(0);
+			}
+			
+		}
+	}
 }

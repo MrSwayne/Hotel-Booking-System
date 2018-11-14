@@ -1,9 +1,10 @@
-package hbs.managers;
+package hbs.Managers;
 
 
-import hbs.models.BookingModel;
-import hbs.models.GuestModel;
-import hbs.views.BookingView;
+import hbs.Models.BookingModel;
+import hbs.Models.GuestModel;
+import hbs.Views.BookingView;
+import hbs.database.BookingDBController;
 import hbs.lambda.newBooking;
 //import view and model.
 public class BookingManager{
@@ -11,6 +12,7 @@ public class BookingManager{
 	private BookingModel model;
 	private GuestModel model2;
 	private newBooking newBook;
+	private BookingDBController db;
 
 	public BookingManager(BookingView view)
 	{
@@ -18,24 +20,13 @@ public class BookingManager{
 		model = new BookingModel();
 		model2 = new GuestModel();
 		newBook = new newBooking();
+		db = new BookingDBController();
 	}
 
-	public void checkBooking(String fName,String lName,String date_in,String date_out) {
-		if(model.getDateIn().equals("")) {
-			model.setDateIn(date_in);
-		}else if(model.getDateOut().equals(""))
-			model.setDateIn(date_out);
-		else {
-			//show error message that the rooms are taken....
-		}
-		
-		if(fName == model2.getFirstName() && lName == model2.getLastName() )
-		{
-			newBook.bookingTransaction();
-		}
-		else
-		{
-			//create new customer account in the databse.
+	public void checkBooking(String fName,String lName,String date_in,String date_out,String roomsBooked,String type) {
+		db.newGuest(fName, lName);
+		if(db.nameValidation(fName, lName)) {
+			db.bookingDates(date_in,date_out);
 		}
 	}
 }
