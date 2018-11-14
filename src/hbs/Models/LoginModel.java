@@ -24,10 +24,7 @@ public class LoginModel
 	public void setPassword(String password){
 		this.password = password;
 	}
-	
-	public boolean doesPasswordEqual(String password) {
-		return this.password.equals(password);
-	}
+	//Method for setting the password and username from db
 }
 
 	
