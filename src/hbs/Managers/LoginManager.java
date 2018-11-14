@@ -3,7 +3,6 @@ package hbs.Managers;
 
 import hbs.Models.LoginModel;
 import hbs.Views.LoginView;
-import hbs.Views.MainMenuView;
 
 public class LoginManager{
     	private LoginModel model;

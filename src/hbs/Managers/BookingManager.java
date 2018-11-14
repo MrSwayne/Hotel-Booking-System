@@ -2,31 +2,45 @@ package hbs.Managers;
 
 
 import hbs.Models.BookingModel;
-import hbs.Models.GuestModel;
 import hbs.Views.BookingView;
-import hbs.database.BookingDBController;
-import hbs.lambda.newBooking;
 //import view and model.
 public class BookingManager{
+
 	private BookingView view;
 	private BookingModel model;
-	private GuestModel model2;
-	private newBooking newBook;
-	private BookingDBController db;
 
 	public BookingManager(BookingView view)
 	{
-		this.view = view;
-		model = new BookingModel();
-		model2 = new GuestModel();
-		newBook = new newBooking();
-		db = new BookingDBController();
+	    model = new BookingModel();
+	    this.view = view;
 	}
 
-	public void checkBooking(String fName,String lName,String date_in,String date_out,String roomsBooked,String type) {
-		db.newGuest(fName, lName);
-		if(db.nameValidation(fName, lName)) {
-			db.bookingDates(date_in,date_out);
+	public void makeBooking(String fName,String lName,String date_in,String date_out,String roomsBooked,String type) 
+	{
+	    model.setDateIn("01/06/2019");
+	    model.setDateOut("21/06/2019");
+	    model.setAvailability(true);
+	    model.setRoomNumbers(10);
+	    model.setType("DoubleRoom");
+	    if(date_in != null && date_out != null) {
+		if(dateAvailble(date_in,date_out))
+		{
+		   if(model.getAvailability()) {
+		       if(type.equals(model.getType()))
+		       {
+			   System.out.println("JAKIE TO JEST GOWNO");
+			   //Other methods to call to do etc.
+		       }
+		   }
 		}
+	    }
+	}
+	
+	public boolean dateAvailble(String dIn,String dOut)
+	{
+	    if(dIn.equals(model.getDateIn()) && dOut.equals(model.getDateOut())) {
+		return true;
+	    }else
+		return false;
 	}
 }

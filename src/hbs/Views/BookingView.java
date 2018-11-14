@@ -93,7 +93,7 @@ public void actionPerformed(ActionEvent e) {
 	BookingManager controller = new BookingManager(this);
 	if(btnPressed.equalsIgnoreCase("submit"))
 		{
-			controller.checkBooking(fnameField.getText(), lnameField.getText(), dateInField.getText(), dateOutField.getText(),roomsBooked.getText(),type.getText());
+			controller.makeBooking(fnameField.getText(), lnameField.getText(), dateInField.getText(), dateOutField.getText(),roomsBooked.getText(),type.getText());
 			this.remove(mainPanel);
 		
 		}
