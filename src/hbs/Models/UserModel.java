@@ -1,27 +1,42 @@
-package hbs.Models;
+package hbs.models;
+import java.util.*;
 
-public class UserModel
+public class UserModel 
 {
-	private String firstName, lastName, password,uID,hID;
-	private boolean isManager;	
+	private int uID, hID;
+	private String firstName, lastName, password;
+	private boolean isManager;
+	private List<UserModel> subordinates;
 	
-	public UserModel(String uID, String firstName, boolean isManager, String hID) {
-		this.uID = uID;
-		this.firstName = firstName;
-		this.isManager = isManager;
-		this.hID = hID;
+	public UserModel()
+	{
+		subordinates = new ArrayList<UserModel>();
 	}
-
-	public UserModel() {
-		
+	
+	public void add(UserModel u)
+	{
+		subordinates.add(u);
 	}
-
-	public String getUID()
+	
+	public void remove(UserModel u)
+	{
+		if (subordinates.contains(u))
+		{
+			subordinates.remove(u);
+		}
+	}
+	
+	public List<UserModel> getSubordinates()
+	{
+		return subordinates;
+	}
+	
+	public int getUID()
 	{
 		return uID;
 	}
 	
-	public String getHID()
+	public int getHID()
 	{
 		return hID;
 	}
