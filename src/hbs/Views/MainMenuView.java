@@ -6,11 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import hbs.Views.*;
 
 public class MainMenuView extends JFrame implements ActionListener {
     JPanel mainPanel = new JPanel();
@@ -31,6 +27,10 @@ public class MainMenuView extends JFrame implements ActionListener {
 	btn2.setActionCommand("payment");
 	btn2.addActionListener(this);
 	control.add(btn2);
+	JButton btn3 = new JButton("Logout");
+	btn3.setActionCommand("logout");
+	btn3.addActionListener(this);
+	control.add(btn3);
 	
 	
 	mainPanel.add(control);
@@ -41,6 +41,7 @@ public class MainMenuView extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 	    	BookingView view1 = new BookingView();
 	    	PaymentView view2 = new PaymentView();
+	    	LoginView view3 = new LoginView();
 		String btnPressed = e.getActionCommand();
 		if(btnPressed.equalsIgnoreCase("booking"))
 		{
@@ -56,6 +57,12 @@ public class MainMenuView extends JFrame implements ActionListener {
 			this.remove(mainPanel);
 			this.setVisible(false);
 			view2.PaymentView();
+		}
+		else if(btnPressed.equalsIgnoreCase("logout"))
+		{
+		    this.remove(mainPanel);
+		    this.setVisible(false);
+		    view3.Login();
 		}
     }
 
