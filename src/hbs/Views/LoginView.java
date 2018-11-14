@@ -57,22 +57,23 @@ public class LoginView extends JFrame implements ActionListener {
 		this.pack();
 	}
 	
+	public void remove() {
+	    MainMenuView view = new MainMenuView();
+	    this.setVisible(false);
+	    this.remove(mainPanel);
+	    view.Menu();
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-	    	//HotelSelectorView view = new HotelSelectorView();
-	    	MainMenuView view = new MainMenuView();
 	    	LoginManager control = new LoginManager(this);
 		String btnPressed = e.getActionCommand();
 		if(btnPressed.equalsIgnoreCase("login"))
 		{
-			if(control.checkCredentials(userField.getText(), passwordField.getText())) {
-				this.setVisible(false);
-				this.remove(mainPanel);
-				view.Menu();
+			control.checkCredentials(userField.getText(), passwordField.getText());
 			}else {
 				System.exit(0);
 			}
 			
 		}
-	}
 }
