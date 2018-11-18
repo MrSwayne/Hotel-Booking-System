@@ -1,4 +1,4 @@
-package hbs.views;
+package hbs.Views;
 
 import java.awt.FlowLayout;
 import java.awt.GridLayout;

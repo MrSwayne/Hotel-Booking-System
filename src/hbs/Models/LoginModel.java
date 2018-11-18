@@ -1,4 +1,4 @@
-package hbs.models;
+package hbs.Models;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

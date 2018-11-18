@@ -1,4 +1,4 @@
-package hbs.views;
+package hbs.Views;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 public class MainMenuView extends View {
     JPanel mainPanel = new JPanel();
     
-    public MainMenuView() {
+    public  void MainMenuView() {
 	this.setTitle("Login");
 	mainPanel = new JPanel(new GridLayout(3,1));
 	

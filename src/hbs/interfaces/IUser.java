@@ -2,6 +2,6 @@ package hbs.interfaces;
 
 public interface IUser {
 	
-	public int getUID();
+	public String getUsername();
 	public String getPassword();
 }

@@ -1,8 +1,8 @@
 package hbs.controllers;
 
 
-import hbs.models.BookingModel;
-import hbs.views.BookingView;
+import hbs.Models.BookingModel;
+import hbs.Views.BookingView;
 //import view and model.
 public class BookingController{
 

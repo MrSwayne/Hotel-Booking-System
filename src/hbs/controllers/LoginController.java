@@ -1,40 +1,55 @@
 package hbs.controllers;
 
 
-import hbs.models.LoginModel;
-import hbs.views.LoginView;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import hbs.Managers.LoginManager;
+import hbs.Views.LoginView;
+import hbs.Views.MainMenuView;
+import hbs.Views.View;
 
 public class LoginController extends Controller {
-    	private LoginModel model;
-    	private LoginView view; 
-	public LoginController()
+    	private LoginView view;
+    	private MainMenuView view2;
+	public LoginController(LoginView view)
 	{
+	    this.view = view;
 	}
 	
-	
-
-	public void checkCredentials(String username,String password)
+	@Override
+	public void addObserver(View view)
 	{
-	    //change it to a method in model which will set the info from the database.
-	    model.setUsername("Patryk");
-	    model.setPassword("easy");
-	    if(username != null && password != null)
-	    {
-		if(validation(username, password))
-		{
-		    view.remove();
-		}
-		else {
-			System.exit(0);
-			view.remove();
-	    		}
-	    }   
+	    observers.add(view);
+	    this.view = (LoginView) view;
+            this.view.addLoginListener(new LoginListener());
 	}
-	public boolean validation(String name,String password) {
-		if(name.equals(model.getUsername()) && password.equals(model.getPassword())){
-			return true;
-		}else {
-			return false;
+	
+	@Override
+	public void removeObserver(View view) {
+	    observers.remove(view);
+	}
+	
+	class LoginListener implements ActionListener{
+	    
+	    @Override
+	    public void actionPerformed(ActionEvent arg0) {
+		System.out.println("HELP!!");
+		try {
+		    LoginManager manager = new LoginManager();
+		    if(manager.checkCredentials(view.getUsername(), view.getPassword()))
+		    {
+			MainMenuView view2 = new MainMenuView();
+		  	 view2.MainMenuView();
+		    }
+		    else {
+			System.out.println("WTF");
+		    }
+		}catch(Exception e) {
+		    
 		}
+		
+	    }
+	    
 	}
 }

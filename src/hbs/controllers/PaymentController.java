@@ -3,8 +3,8 @@ package hbs.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import hbs.models.*;
-import hbs.views.*;
+import hbs.Models.*;
+import hbs.Views.*;
 
 public class PaymentController extends Controller {
 	

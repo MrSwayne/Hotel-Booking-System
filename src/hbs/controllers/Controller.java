@@ -1,9 +1,9 @@
 package hbs.controllers;
 
 import java.util.ArrayList;
-import hbs.models.Model;
+import hbs.Models.Model;
 
-import hbs.views.View;
+import hbs.Views.View;
 
 public abstract class Controller {
 	

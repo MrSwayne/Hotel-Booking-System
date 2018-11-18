@@ -1,4 +1,4 @@
-package hbs.views;
+package hbs.Views;
 
 import javax.swing.JOptionPane;
 public class HotelSelector {

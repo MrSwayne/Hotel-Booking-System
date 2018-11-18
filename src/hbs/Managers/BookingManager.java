@@ -4,7 +4,7 @@ package hbs.Managers;
 import hbs.Models.BookingModel;
 import hbs.Views.BookingView;
 //import view and model.
-public class BookingManager{
+public class BookingManager implements IBookable{
 
 	private BookingView view;
 	private BookingModel model;

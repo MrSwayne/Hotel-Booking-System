@@ -1,4 +1,4 @@
-package hbs.views;
+package hbs.Views;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;

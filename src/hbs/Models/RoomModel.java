@@ -1,4 +1,4 @@
-package hbs.models;
+package hbs.Models;
 
 public class RoomModel extends Model
 {

@@ -1,4 +1,4 @@
-package hbs.models;
+package hbs.Models;
 
 public class BookingModel extends Model
 {
@@ -9,7 +9,6 @@ public class BookingModel extends Model
 	{
 		
 	}
-	
 	
 	public int getGID()
 	{
