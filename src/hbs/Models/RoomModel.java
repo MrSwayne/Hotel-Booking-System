@@ -1,8 +1,10 @@
-package hbs.Models;
+package hbs.models;
 
-public class RoomModel extends Model
+import hbs.interfaces.IBookable;
+
+public class RoomModel implements IBookable 
 {
-	private int  roomNumbers,roomNo, hID, rID;
+	private int roomNo, hID, rID;
 	private String type;
 	private boolean available = true;
 	private double price;
@@ -10,15 +12,6 @@ public class RoomModel extends Model
 	public RoomModel() 
 	{
 		
-	}
-	
-	
-	public int getRoomNumbers() {
-		return roomNumbers;
-	}
-	
-	public void setRoomNumbers(int roomNumbers){
-		this.roomNumbers = roomNumbers;
 	}
 	
 	public int getHID()

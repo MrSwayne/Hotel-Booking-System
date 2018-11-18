@@ -1,8 +1,7 @@
 package hbs.factory;
 
-import hbs.factory.SingleRoom;
-import hbs.interfaces.IRoom;
-import hbs.factory.DoubleRoom;
+import hbs.RoomFactory.SingleRoom;
+import hbs.RoomFactory.DoubleRoom;
 
 public class RoomFactory extends AbstractFactory {
 

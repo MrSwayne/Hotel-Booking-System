@@ -1,35 +1,12 @@
-package hbs.Models;
-import java.util.*;
+package hbs.models;
 
-public class UserModel extends Model
+import hbs.interfaces.IUser;
+
+public class UserModel implements IUser
 {
 	private int uID, hID;
 	private String firstName, lastName, password;
-	private boolean isManager;
-	private List<UserModel> subordinates;
-	
-	public UserModel()
-	{
-		subordinates = new ArrayList<UserModel>();
-	}
-	
-	public void add(UserModel u)
-	{
-		subordinates.add(u);
-	}
-	
-	public void remove(UserModel u)
-	{
-		if (subordinates.contains(u))
-		{
-			subordinates.remove(u);
-		}
-	}
-	
-	public List<UserModel> getSubordinates()
-	{
-		return subordinates;
-	}
+	private boolean isManager;	
 	
 	public int getUID()
 	{
@@ -71,13 +48,15 @@ public class UserModel extends Model
 		return password;
 	}
 	
-	public void setIsManager(boolean isManager)
-	{
-		this.isManager = isManager;
-	}
 	
 	public boolean getIsManager()
 	{
 		return isManager;
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

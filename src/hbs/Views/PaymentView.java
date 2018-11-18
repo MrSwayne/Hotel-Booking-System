@@ -1,4 +1,4 @@
-package hbs.Views;
+package hbs.views;
 
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -16,7 +16,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 
-public class PaymentView extends View {
+public class PaymentView extends JFrame implements ActionListener {
 
 	private JTextField nameF;
 	private JTextField cNumberF;
@@ -27,7 +27,7 @@ public class PaymentView extends View {
 	private JButton payBttn;
 	private JButton cancelBttn;
 	
-	public void PaymentView() {
+	public PaymentView() {
 			JPanel container = new JPanel();
 			container.setLayout(new BoxLayout(container, BoxLayout.PAGE_AXIS));
 			nameF = new JTextField("", 15);

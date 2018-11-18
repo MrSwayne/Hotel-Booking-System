@@ -1,6 +1,6 @@
-package hbs.Models;
+package hbs.models;
 
-public class BookingModel extends Model
+public class BookingModel
 {
 	private int gID, rID, bID; 
 	private String date_in, date_out;
@@ -24,7 +24,6 @@ public class BookingModel extends Model
 	{
 		return bID;
 	}
-
 	
 	public void setDateIn(String date)
 	{
@@ -45,6 +44,4 @@ public class BookingModel extends Model
 	{
 		return date_out;
 	}
-	//Method to get all the information for booking in db
-	//public void getBookings()
 }
