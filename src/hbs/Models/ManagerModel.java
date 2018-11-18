@@ -1,21 +1,44 @@
 package hbs.Models;
+import java.util.*;
 import hbs.interfaces.IUser;
 
-public class UserModel extends Model implements IUser
+public class ManagerModel extends Model implements IUser
 {
 	private int uID, hID;
 	private String firstName, lastName, password;
+	private List<UserModel> subordinates;
 	
-	public UserModel()
-	{}
+	public ManagerModel()
+	{
+		subordinates = new ArrayList<UserModel>();
+	}
 	
-	public UserModel(int uID, int hID, String firstName, String lastName, String password)
+	public ManagerModel(int uID, int hID, String firstName, String lastName, String password)
 	{
 		this.uID = uID;
 		this.hID = hID;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.password = password;
+		subordinates = new ArrayList<UserModel>();
+	}
+	
+	public void add(UserModel u)
+	{
+		subordinates.add(u);
+	}
+	
+	public void remove(UserModel u)
+	{
+		if (subordinates.contains(u))
+		{
+			subordinates.remove(u);
+		}
+	}
+	
+	public List<UserModel> getSubordinates()
+	{
+		return subordinates;
 	}
 	
 	public int getUID()
