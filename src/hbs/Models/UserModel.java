@@ -1,7 +1,7 @@
-package hbs.Models;
+package hbs.models;
 import java.util.*;
 
-public class UserModel 
+public class UserModel extends Model
 {
 	private int uID, hID;
 	private String firstName, lastName, password;

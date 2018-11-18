@@ -4,11 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hbs.database.HotelDBController;
-import hbs.Models.HotelModel;
+import hbs.models.HotelModel;
 
 public class BookingTransaction {
     
-    public void handleTransactions(int hID,int rooms)
+    public BookingTransaction(int hID, int numOfRooms) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public void handleTransactions(int hID,int rooms)
     {
 	HotelDBController db = new HotelDBController();
 	

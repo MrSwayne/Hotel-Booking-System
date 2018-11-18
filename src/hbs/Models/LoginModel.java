@@ -1,4 +1,4 @@
-package hbs.Models;
+package hbs.models;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import hbs.interfaces.IUser;
 
-public class LoginModel implements IUser
+public class LoginModel extends Model implements IUser
 {
 	private String username, password;
 	//private Connection conn;

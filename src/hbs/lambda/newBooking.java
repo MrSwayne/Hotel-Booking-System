@@ -1,7 +1,7 @@
 package hbs.lambda;
 
 import hbs.lambda.common.Keys;
-import hbs.Models.HotelModel;
+import hbs.models.HotelModel;
 
 import java.util.Map;
 
@@ -23,5 +23,17 @@ public class newBooking implements CustomerBookingHandler {
 	
 	return new BookingTransaction(hID,numOfRooms);
     }
+
+	@Override
+	public void validateInput(Map<String, Object> input) throws RuntimeException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Map<String, Object> generateResponse(Map<String, Object> input) {
+		// TODO Auto-generated method stub
+		return null;
+	}
     
 }

@@ -11,4 +11,5 @@ public interface CustomerBookingHandler {
      * This method should response if the inmpuit is correct or not 
      */
     public Map<String,Object> generateResponse(Map<String,Object> input);
+	Map<String, Object> handleBooking(Map<String, Object> input);
 }

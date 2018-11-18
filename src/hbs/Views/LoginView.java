@@ -1,4 +1,4 @@
-package hbs.Views;
+package hbs.views;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -10,9 +10,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import hbs.Managers.LoginManager;
+import hbs.controllers.LoginController;
 
-public class LoginView extends JFrame implements ActionListener {
+public class LoginView extends View {
 	/**
 	 * 
 	 */
@@ -21,10 +21,7 @@ public class LoginView extends JFrame implements ActionListener {
 	private JTextField userField;
 	private JTextField passwordField;
 	
-	public void Login() {
-	    	this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		this.setLocationRelativeTo(null);//setting to the center of the screen
-		this.setVisible(true);
+	public LoginView() {
 		this.setTitle("Login");
 		mainPanel = new JPanel(new GridLayout(3,1));
 		
@@ -58,15 +55,15 @@ public class LoginView extends JFrame implements ActionListener {
 	}
 	
 	public void remove() {
-	    MainMenuView view = new MainMenuView();
 	    this.setVisible(false);
 	    this.remove(mainPanel);
-	    view.Menu();
+	    MainMenuView mainMenu = new MainMenuView();
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-	    	LoginManager control = new LoginManager(this);
+	    LoginController control = new LoginController();
+	    control.addObserver(this);
 		String btnPressed = e.getActionCommand();
 		if(btnPressed.equalsIgnoreCase("login"))
 		{
@@ -74,6 +71,5 @@ public class LoginView extends JFrame implements ActionListener {
 			}else {
 				System.exit(0);
 			}
-			
 		}
 }

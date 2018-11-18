@@ -1,24 +1,15 @@
-package hbs.Views;
+package hbs.views;
 
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
-public class HotelSelectorView{
+public class HotelSelectorView extends View{
    
-	public void HotelSelector()
+	public HotelSelectorView()
 	{
-	    MainMenuView view = new MainMenuView();
+	    this.setTitle("Hotel Select");
 	    String [] hotels = {"Hotel1","Hotel2","Hotel3","Hotel4","Hotel5","Hotel6","Hotel7","Hotel8"};
-		String input = (String) JOptionPane.showInputDialog(null,"Choose Hotel","Hotel Selector",JOptionPane.QUESTION_MESSAGE,null,
-				hotels,//Array of hotels
-				hotels[0]);//Initial Choice  
-		
-		for(int i=0;i<hotels.length;i++)
-		{
-		    if(input.equalsIgnoreCase(hotels[i]))
-		    {
-			view.setVisible(true);
-		    }
-		}
-		
+	    JComboBox hotelList = new JComboBox(hotels);
+	    hotelList.setSelectedIndex(0);
 	}
 }

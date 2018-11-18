@@ -1,6 +1,6 @@
-package hbs.Models;
+package hbs.models;
 
-public class RoomModel
+public class RoomModel extends Model
 {
 	private int  roomNumbers,roomNo, hID, rID;
 	private String type;

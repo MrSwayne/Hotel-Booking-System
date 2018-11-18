@@ -1,4 +1,4 @@
-package hbs.Views;
+package hbs.views;
 
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -16,7 +16,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 
-public class PaymentView extends JFrame implements ActionListener {
+public class PaymentView extends View {
 
 	private JTextField nameF;
 	private JTextField cNumberF;

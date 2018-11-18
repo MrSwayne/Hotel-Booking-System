@@ -1,6 +1,6 @@
-package hbs.Models;
+package hbs.models;
 
-public class GuestModel
+public class GuestModel extends Model
 {
 	private int totalSpent, memLev,gID;
 	private String first_name, last_name;

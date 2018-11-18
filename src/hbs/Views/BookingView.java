@@ -1,4 +1,4 @@
-package hbs.Views;
+package hbs.views;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -10,9 +10,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import hbs.Managers.BookingManager;
+import hbs.controllers.BookingController;
 
-public class BookingView extends JFrame implements ActionListener {
+public class BookingView extends View {
 	JPanel mainPanel = new JPanel();
 	private JTextField fnameField;
 	private JTextField lnameField;
@@ -22,8 +22,6 @@ public class BookingView extends JFrame implements ActionListener {
 	private JTextField type;
 	
 	public void Booking() {
-		this.setLocationRelativeTo(null);//setting to the center of the screen
-		this.setVisible(true);
 		this.setTitle("Booking");
 		mainPanel = new JPanel(new GridLayout(3,1));
 		
@@ -90,7 +88,7 @@ public class BookingView extends JFrame implements ActionListener {
 @Override
 public void actionPerformed(ActionEvent e) {
 	String btnPressed = e.getActionCommand();
-	BookingManager controller = new BookingManager(this);
+	BookingController controller = new BookingController(this);
 	if(btnPressed.equalsIgnoreCase("submit"))
 		{
 			controller.makeBooking(fnameField.getText(), lnameField.getText(), dateInField.getText(), dateOutField.getText(),roomsBooked.getText(),type.getText());

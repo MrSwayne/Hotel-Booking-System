@@ -1,4 +1,4 @@
-package hbs.Views;
+package hbs.views;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -8,12 +8,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class MainMenuView extends JFrame implements ActionListener {
+public class MainMenuView extends View {
     JPanel mainPanel = new JPanel();
-    public void Menu() {
-	this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-	this.setLocationRelativeTo(null);//setting to the center of the screen
-	this.setVisible(true);
+    
+    public MainMenuView() {
 	this.setTitle("Login");
 	mainPanel = new JPanel(new GridLayout(3,1));
 	
@@ -39,16 +37,14 @@ public class MainMenuView extends JFrame implements ActionListener {
     }
     @Override
 	public void actionPerformed(ActionEvent e) {
-	    	BookingView view1 = new BookingView();
-	    	PaymentView view2 = new PaymentView();
-	    	LoginView view3 = new LoginView();
+
 		String btnPressed = e.getActionCommand();
 		if(btnPressed.equalsIgnoreCase("booking"))
 		{
 		    		
 				this.remove(mainPanel);
 				this.setVisible(false);
-				view1.Booking();
+		    	BookingView bookingView = new BookingView();
 				//System.exit(0);
 			
 		}
@@ -56,13 +52,13 @@ public class MainMenuView extends JFrame implements ActionListener {
 		{
 			this.remove(mainPanel);
 			this.setVisible(false);
-			view2.PaymentView();
+	    	PaymentView paymentView = new PaymentView();
 		}
 		else if(btnPressed.equalsIgnoreCase("logout"))
 		{
 		    this.remove(mainPanel);
 		    this.setVisible(false);
-		    view3.Login();
+		    LoginView loginView = new LoginView();
 		}
     }
 

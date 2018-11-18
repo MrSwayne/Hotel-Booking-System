@@ -17,7 +17,7 @@ public class SingleRoom implements IRoom {
 	}
 
 	@Override
-	public double getOccupancy() {
+	public int getOccupancy() {
 		return occupancy;
 	}
 
