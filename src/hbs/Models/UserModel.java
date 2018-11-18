@@ -1,12 +1,22 @@
-package hbs.models;
-
+package hbs.Models;
 import hbs.interfaces.IUser;
 
-public class UserModel implements IUser
+public class UserModel extends Model implements IUser
 {
 	private int uID, hID;
 	private String firstName, lastName, password;
-	private boolean isManager;	
+	
+	public UserModel()
+	{}
+	
+	public UserModel(int uID, int hID, String firstName, String lastName, String password)
+	{
+		this.uID = uID;
+		this.hID = hID;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.password = password;
+	}
 	
 	public int getUID()
 	{
@@ -48,15 +58,4 @@ public class UserModel implements IUser
 		return password;
 	}
 	
-	
-	public boolean getIsManager()
-	{
-		return isManager;
-	}
-
-	@Override
-	public String getUsername() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
