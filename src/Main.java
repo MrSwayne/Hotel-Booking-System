@@ -1,11 +1,9 @@
 
-import hbs.views.LoginView;
 import hbs.views.PaymentView;
 
 public class Main {
 	
 	public static void main(String[] args) {
-		LoginView view = new LoginView();
-		view.LoginView();
+		PaymentView view = new PaymentView();
 	}
 }
