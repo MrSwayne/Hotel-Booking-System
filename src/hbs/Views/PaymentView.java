@@ -15,8 +15,10 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import hbs.controllers.Controller;
 
-public class PaymentView extends JFrame implements ActionListener {
+
+public class PaymentView extends View {
 
 	private JTextField nameF;
 	private JTextField cNumberF;
@@ -27,7 +29,7 @@ public class PaymentView extends JFrame implements ActionListener {
 	private JButton payBttn;
 	private JButton cancelBttn;
 	
-	public PaymentView() {
+	public void PaymentView() {
 			JPanel container = new JPanel();
 			container.setLayout(new BoxLayout(container, BoxLayout.PAGE_AXIS));
 			nameF = new JTextField("", 15);
@@ -96,7 +98,12 @@ public class PaymentView extends JFrame implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void setController(Controller controller) {
+		this.controller = controller;
+	}
+
+	@Override
+	public void setMessage(String message) {
 		// TODO Auto-generated method stub
 		
 	}

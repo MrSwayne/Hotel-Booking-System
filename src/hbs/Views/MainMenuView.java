@@ -1,4 +1,4 @@
-package hbs.Views;
+package hbs.views;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -8,7 +8,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class MainMenuView extends View {
+import hbs.controllers.Controller;
+
+public class MainMenuView extends View implements ActionListener{
     JPanel mainPanel = new JPanel();
     
     public  void MainMenuView() {
@@ -61,5 +63,10 @@ public class MainMenuView extends View {
 		    LoginView loginView = new LoginView();
 		}
     }
+	@Override
+	public void setMessage(String message) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

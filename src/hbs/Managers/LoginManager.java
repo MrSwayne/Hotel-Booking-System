@@ -1,27 +1,25 @@
 package hbs.managers;
 
 
-import hbs.views.LoginView;
 import hbs.models.LoginModel;
 
-//import view and model.
 public class LoginManager{
-	private LoginView view;
-	private LoginModel model;
-
-	public LoginManager(LoginView view)
+    	private LoginModel model;
+	public LoginManager()
 	{
-		this.view = view;
-		model = new LoginModel();
 	}
 
-	public void checkCredentials(String username,String password){
-		model.setUsername(username);
-		//model.getCredentials();
-		if(password.equals(model.getPassword())){
-			//do stuff
-		}else{
-			//view.setErrorMessage("Login Failed! Try Again.");
-		}
+	public boolean checkCredentials(String username,String password)
+	{
+	    //change it to a method in model which will set the info from the database.
+	    model.setUsername("Patryk");
+	    model.setPassword("easy");
+	    if(username != null && password != null)
+	    {
+		if(username.equals(model.getUsername()) && password.equals(model.getPassword()))
+		    return true;
+	    }
+	    return false;
 	}
 }
+

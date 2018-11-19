@@ -1,6 +1,6 @@
 package hbs.factory;
 
-import hbs.interfaces.IRoom
+import hbs.interfaces.IRoom;
 import java.util.Date;
 
 public class DoubleRoom implements IRoom {
@@ -17,7 +17,7 @@ public class DoubleRoom implements IRoom {
 	}
 
 	@Override
-	public double getOccupancy() {
+	public int getOccupancy() {
 		return occupancy;
 	}
 

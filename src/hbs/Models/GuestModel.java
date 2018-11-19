@@ -1,11 +1,23 @@
 package hbs.models;
 
-public class GuestModel
+public class GuestModel extends Model
 {
-	private int gID, totalSpent, memLev;
+	private int totalSpent, memLev,gID;
 	private String first_name, last_name;
 	private String memSince;
 	
+	public GuestModel(int gID, String first_name, String last_name, String memSince, int totalSpent, int memLev) {
+		this.gID = gID;
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.memSince = memSince;
+		this.totalSpent = totalSpent;
+		this.memLev = memLev;
+	}
+
+	public GuestModel() {
+	}
+
 	public int getGID()
 	{
 		return gID;

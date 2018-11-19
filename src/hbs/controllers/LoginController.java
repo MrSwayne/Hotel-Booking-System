@@ -4,25 +4,24 @@ package hbs.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import hbs.Managers.LoginManager;
-import hbs.Views.LoginView;
-import hbs.Views.MainMenuView;
-import hbs.Views.View;
+import hbs.views.LoginView;
+import hbs.views.MainMenuView;
+import hbs.views.View;
+import hbs.managers.LoginManager;
 
 public class LoginController extends Controller {
-    	private LoginView view;
     	private MainMenuView view2;
-	public LoginController(LoginView view)
+	public LoginController()
 	{
-	    this.view = view;
 	}
-	
 	@Override
 	public void addObserver(View view)
 	{
 	    observers.add(view);
-	    this.view = (LoginView) view;
-            this.view.addLoginListener(new LoginListener());
+	    LoginView loginView = (LoginView) view;
+	    LoginListener listener = new LoginListener(loginView);
+	    
+            loginView.addLoginListener(listener);
 	}
 	
 	@Override
@@ -31,6 +30,12 @@ public class LoginController extends Controller {
 	}
 	
 	class LoginListener implements ActionListener{
+		
+		private LoginView view;
+		
+		public LoginListener(LoginView view) {
+			this.view = view;
+		}
 	    
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
@@ -51,5 +56,11 @@ public class LoginController extends Controller {
 		
 	    }
 	    
+	}
+
+	@Override
+	public void notifyObservers() {
+		// TODO Auto-generated method stub
+		
 	}
 }

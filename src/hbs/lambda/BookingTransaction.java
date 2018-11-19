@@ -16,8 +16,9 @@ public class BookingTransaction {
     {
 	HotelDBController db = new HotelDBController();
 	
+	/*
 	db.decrementHotelsRooms(hID,rooms);
-	
+	*/
 	
     }
 }

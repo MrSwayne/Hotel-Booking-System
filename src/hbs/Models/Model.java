@@ -1,4 +1,4 @@
-package hbs.Models;
+package hbs.models;
 
 public abstract class Model {
 	

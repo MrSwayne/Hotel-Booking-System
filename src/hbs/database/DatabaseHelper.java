@@ -8,7 +8,15 @@ import java.util.HashMap;
 public class DatabaseHelper {
 	
 	private Connection conn = null;
-	private String url = "jdbc:mysql://localhost:8080/hbs";
+	
+	private final String host = "localhost";
+	private final String database = "hbs";
+	private final String username = "root";
+	private final String password = "";
+	
+	private String url = "jdbc:mysql://" + host + "/" + database + "?" + "user=" + username + "&password=" + password;
+	
+	
 	private String uName;
 	private String pWord;
 	private String ip;
@@ -16,9 +24,6 @@ public class DatabaseHelper {
 	private static DatabaseHelper instance = null;
 	
 	private DatabaseHelper() {
-		uName = "root";
-		pWord = "apple1";
-		ip = "192.168.1.1";
 	}
 	
 	public static DatabaseHelper getInstance() {
@@ -30,8 +35,11 @@ public class DatabaseHelper {
 	private Connection conn() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			
+			conn = DriverManager.getConnection(url);
 		} catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -45,6 +53,10 @@ public class DatabaseHelper {
 	
 	//Gets data from database and returns as a hashmap
 	public HashMap<String, String> executeQuery(String sql) {
-		return null;
+		
+		//TODO
+		// Convert result of sql query to hashmap
+		HashMap<String,String> map = new HashMap<String, String>();
+		return map;
 	}
 }

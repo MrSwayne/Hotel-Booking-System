@@ -1,6 +1,6 @@
 package hbs.models;
 
-public class PaymentModel
+public class PaymentModel extends Model
 {
 	private int totalPrice, pID, bID;
 	private boolean isPaid;

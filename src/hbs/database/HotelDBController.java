@@ -5,33 +5,30 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 
-import hbs.Models.HotelModel;
+//import hbs.models.HotelModel;
 
 public class HotelDBController {
-    private List<HotelModel> hotels;
-    private HotelModel model;
+   // private List<HotelModel> hotels;
+    //private HotelModel model;
+    
+    /*
 
     
     public void HotelDBCotroller() {
-	hotels = new ArrayList<>();
-	model = new HotelModel();
+	//hotels = new ArrayList<>();
+	//model = new HotelModel();
 	
 	for(int i = 0; i<=11;i++)
 	{
-	    hotels.add(new HotelModel(i,model.getHID(),model.getCountry(),model.getCity(),model.getName(),model.getRooms()));
+	   // hotels.add(new HotelModel(i,model.getHID(),model.getCountry(),model.getCity(),model.getName(),model.getRooms()));
 	}
     }
-    /*
-     * @return a list of hotels
-     */
+
     public List<HotelModel> getHotels(){
 	return this.hotels;
     }
     
-    /*
-     * @param hotelId The ID for the hotel
-     * @return hotel object
-     */
+
     public HotelModel getHotel( int hID)
     {
 	return ((HotelModel) hotels).filter(h -> h.getHID() == hID).collect(Collectors.toList()).get(0);
@@ -45,5 +42,5 @@ public class HotelDBController {
 	   model.setRooms(numRooms)
 	}
 	
-    }
+    }*/
 }

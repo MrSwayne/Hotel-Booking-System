@@ -1,10 +1,12 @@
 
-import hbs.Views.LoginView;
+import hbs.views.LoginView;
+import hbs.controllers.LoginController;
 
 public class Main {
     public static void main(String [] args)
     {
-	LoginView login = new LoginView();
-	login.LoginView();
+	LoginView loginV = new LoginView();
+	LoginController loginC = new LoginController();
+	loginC.addObserver(loginV);
     }
 }

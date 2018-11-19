@@ -1,11 +1,11 @@
-package hbs.Views;
+package hbs.views;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import hbs.controllers.Controller;
 
-public abstract class View extends JFrame implements ActionListener {
+public abstract class View extends JFrame{
 	
 	protected Controller controller;
 	
@@ -19,13 +19,5 @@ public abstract class View extends JFrame implements ActionListener {
 		this.controller = controller;
 	}
 	
-	public void setMessage(String message) {
-		//TODO
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public abstract void setMessage(String message);
 }

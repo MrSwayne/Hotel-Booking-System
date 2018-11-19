@@ -1,9 +1,9 @@
 package hbs.controllers;
 
 import java.util.ArrayList;
-import hbs.Models.Model;
 
-import hbs.Views.View;
+import hbs.views.View;
+import hbs.models.Model;
 
 public abstract class Controller {
 	
@@ -18,15 +18,9 @@ public abstract class Controller {
 		this.model = model;
 	}
 	
-	public void addObserver(View view) {
-		observers.add(view);
-	}
+	public abstract void addObserver(View view);
 	
-	public void removeObserver(View view) {
-		observers.remove(view);
-	}
+	public abstract void removeObserver(View view);
 	
-	public void notifyObservers() {
-		
-	}
+	public abstract void notifyObservers();
 }
