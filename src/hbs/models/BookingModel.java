@@ -2,7 +2,7 @@ package hbs.models;
 
 public class BookingModel extends Model
 {
-	private int gID, rID, bID; 
+	private int gID, rID, bID,nights; 
 	private String date_in, date_out;
 	
 	public BookingModel()
@@ -24,8 +24,12 @@ public class BookingModel extends Model
 	{
 		return bID;
 	}
-
 	
+	public void setBID(int bID)
+	{
+	    this.bID= bID;
+	}
+
 	public void setDateIn(String date)
 	{
 		this.date_in = date;
@@ -45,6 +49,17 @@ public class BookingModel extends Model
 	{
 		return date_out;
 	}
+	
+	public int getAmountOfNights()
+	{
+	    return nights;
+	}
+	
+	public void setAmountOfNights(int nights)
+	{
+	    this.nights=nights;
+	}
+
 	//Method to get all the information for booking in db
 	//public void getBookings()
 }

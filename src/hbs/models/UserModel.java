@@ -1,4 +1,4 @@
-package hbs.Models;
+package hbs.models;
 import hbs.interfaces.IUser;
 
 public class UserModel extends Model implements IUser

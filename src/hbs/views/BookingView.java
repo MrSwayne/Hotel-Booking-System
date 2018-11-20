@@ -7,12 +7,13 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import hbs.controllers.BookingController;
 
-public class BookingView extends View implements ActionListener {
+public class BookingView extends View {
 	JPanel mainPanel = new JPanel();
 	private JTextField fnameField;
 	private JTextField lnameField;
@@ -20,8 +21,10 @@ public class BookingView extends View implements ActionListener {
 	private JTextField dateOutField;
 	private JTextField roomsBooked;
 	private JTextField type;
+	private JButton submitBtn;
+	private JButton cancelBtn;
 	
-	public void Booking() {
+	public  BookingView() {
 		this.setTitle("Booking");
 		mainPanel = new JPanel(new GridLayout(3,1));
 		
@@ -30,33 +33,28 @@ public class BookingView extends View implements ActionListener {
 		fnameField = new JTextField("",10);
 		fName.add(fnameLabel);
 		fName.add(fnameField);
-		fName.setVisible(true);
 		
 		JPanel lName = new JPanel();
 		JLabel lnameLabel = new JLabel("Last Name: ",JLabel.CENTER);
 		lnameField = new JTextField("",10);
-		lName.setVisible(true);
 		lName.add(lnameLabel);
 		lName.add(lnameField);
 
 		JPanel dateInPanel = new JPanel();
 		JLabel dateInLabel = new JLabel("Date in: ",JLabel.CENTER);
 		dateInField = new JTextField("",10);
-		dateInPanel.setVisible(true);
 		dateInPanel.add(dateInLabel);
 		dateInPanel.add(dateInField);
 
 		JPanel dateOutPanel = new JPanel();
 		JLabel dateOutLabel = new JLabel("Date out: ",JLabel.CENTER);
 		dateOutField = new JTextField("",10);
-		dateOutPanel.setVisible(true);
 		dateOutPanel.add(dateOutLabel);
 		dateOutPanel.add(dateOutField);
 		
 		JPanel roomsPanel = new JPanel();
 		JLabel roomLabel = new JLabel("Rooms: ",JLabel.CENTER);
 		roomsBooked= new JTextField("",10);
-		roomsPanel.setVisible(true);
 		roomsPanel.add(roomLabel);
 		roomsPanel.add(roomsBooked);
 		
@@ -68,11 +66,8 @@ public class BookingView extends View implements ActionListener {
 		typePanel.add(type);
 		
 		JPanel control = new JPanel();
-		control.setVisible(true);
-		JButton button = new JButton("Submit");
-		button.setActionCommand("submit");
-		button.addActionListener(this);
-		control.add(button);
+		submitBtn = new JButton("Submit");
+		control.add(submitBtn);
 		
 		mainPanel.add(fName);
 		mainPanel.add(lName);
@@ -82,26 +77,42 @@ public class BookingView extends View implements ActionListener {
 		mainPanel.add(roomsPanel);
 		mainPanel.add(control);
 		this.add(mainPanel);
+		this.setVisible(true);
 		this.pack();
 	}
 
-@Override
-public void actionPerformed(ActionEvent e) {
-	String btnPressed = e.getActionCommand();
-	BookingController controller = new BookingController();
-	controller.addObserver(this);
-	
-	if(btnPressed.equalsIgnoreCase("submit"))
-		{
-			controller.makeBooking(fnameField.getText(), lnameField.getText(), dateInField.getText(), dateOutField.getText(),roomsBooked.getText(),type.getText());
-			this.remove(mainPanel);
-		
-		}
-	}
 
-@Override
-public void setMessage(String message) {
-	// TODO Auto-generated method stub
+	public String getFirstName() {
+	    return fnameField.getText();
+	}
+	public String getLastName() {
+	    return lnameField.getText();
+	}
+	public String getDateIn() {
+	    return dateInField.getText();
+	}
+	public String getDateOut() {
+	    return dateOutField.getText();
+	}
+	public String getRoomType() {
+	    return type.getText();
+	}
+	public String getRoomAmount() {
+	    return roomsBooked.getText();
+	}
 	
-}
+	public void addBookingListener(ActionListener listen)
+	{
+	    submitBtn.addActionListener(listen);
+	}
+	
+	public void displayMessage(String message)
+	{
+	    JOptionPane.showMessageDialog(this,message);
+	}
+	@Override
+	public void setMessage(String message) {
+		// TODO Auto-generated method stub
+		
+	}
 }

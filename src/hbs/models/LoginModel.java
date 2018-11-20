@@ -1,7 +1,6 @@
 package hbs.models;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
 
 //import java.sql.Connection;
 
@@ -16,11 +15,11 @@ public class LoginModel extends Model implements IUser
 		
 	}
 	
-	public void setUsername (String username){
+	public void setFirstName (String username){
 		this.username = username;
 	}
-	@Override
-	public String getUsername(){
+	
+	public String getFirstName(){
 		return username;
 	}
 	@Override
@@ -57,6 +56,12 @@ public class LoginModel extends Model implements IUser
 	  	    }
 	  	}
 	  }*/
+
+	@Override
+	public int getUID() {
+	    // TODO Auto-generated method stub
+	    return 0;
+	}
 	  
 	
 }

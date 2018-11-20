@@ -1,46 +1,124 @@
 package hbs.managers;
 
 
-import hbs.views.BookingView;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import hbs.models.BookingModel;
+import hbs.models.GuestModel;
+import hbs.models.RoomModel;
 //import view and model.
 public class BookingManager{
-
-	private BookingView view;
-	private BookingModel model;
-
-	public BookingManager(BookingView view)
+    private GuestModel guestM = new GuestModel();
+    private RoomModel roomM = new RoomModel();
+    private BookingModel bookingM = new BookingModel();
+    final static String dateFormat = "dd/MM/yy";
+    
+    public BookingManager()
 	{
-	    model = new BookingModel();
-	    this.view = view;
 	}
-
-	public void makeBooking(String fName,String lName,String date_in,String date_out,String roomsBooked,String type) 
+    public boolean checkBooking(String firstName, String lastName, String dateIn, String dateOut, String roomAmount,
+	    String roomType) 
+    {
+	//hard coded at the moment -> change it later...
+	guestM.setMemLev(1);
+	roomM.setRoomNumbers(50);
+	roomM.setType("Double");
+	roomM.setPrice(60);
+	roomM.setAvailability(true);
+	//check if the name correspond to any in the db otherwise set everything as a new customer.
+	if(dateValidation(dateIn,dateOut))
 	{
-	    model.setDateIn("01/06/2019");
-	    model.setDateOut("21/06/2019");
-	   // model.setAvailability(true);
-	   // model.setRoomNumbers(10);
-	   // model.setType("DoubleRoom");
-	    if(date_in != null && date_out != null) {
-		if(dateAvailble(date_in,date_out))
-		{ /*
-		   if(model.getAvailability()) {
-		       if(type.equals(model.getType()))
-		       {
-			   System.out.println("JAKIE TO JEST GOWNO");
-			   //Other methods to call to do etc.
-		       }
-		   }*/
-		}
+	    System.out.println("Hurray,dates are valid");
+	    if(roomsAvailable(roomAmount,roomType))
+	    {
+		bookingProgram(firstName,lastName,dateIn,dateOut,roomAmount,roomType);
+		
+		return true;
 	    }
 	}
-	
-	public boolean dateAvailble(String dIn,String dOut)
+	return false;
+    }
+
+	public boolean dateValidation(String dateIn,String dateOut)
 	{
-	    if(dIn.equals(model.getDateIn()) && dOut.equals(model.getDateOut())) {
-		return true;
+	  if(dateIn == null || dateOut == null)
+	  {
+	      return false;
+	  }
+	  
+	  SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
+	  sdf.setLenient(false);
+	  
+	  try {
+	      //if not valid, it will throw ParseException
+	      Date date = sdf.parse(dateIn);
+	      Date date2 = sdf.parse(dateOut);
+	      bookingM.setDateIn(dateIn);
+	      bookingM.setDateOut(dateOut);
+	      long diff = date2.getTime() - date.getTime();
+	      int nights = (int) (diff/ (1000*60*60*24));
+	      bookingM.setAmountOfNights(nights);
+	      System.out.println(date + " " + date2);
+	  }catch (ParseException e) {
+	      	  System.out.println("Invalid date(s)");
+	      	  return false;
+	  }
+	  return true;
+	}
+	
+	public boolean roomsAvailable(String roomAmount,String roomType)
+	{
+	    if(roomAmount != null || roomType != null){
+		if(roomAmount.matches("[0-9]+"))
+		{
+		    int rmNumber = Integer.parseInt(roomAmount);
+		    if((rmNumber <= roomM.getRoomNumbers())||roomType.equals(roomM.getType()))
+		    {
+			if(roomM.getAvailability())
+			{
+			    System.out.println("Hurray,room is available");
+			    return true;
+			}
+		    }
+		} 
+	    }
+	    return false; 
+	}
+	
+	public void bookingProgram(String firstName, String lastName, String dateIn, String dateOut, String roomAmount,String roomType)
+	{
+	    bookingM.setBID(304);
+	    guestM.setFirstName(firstName);
+	    guestM.setLastName(lastName);
+	    int memLev = guestM.getMemLev();
+	    int rmBooked = Integer.parseInt(roomAmount);
+	    double totalSpent;
+	    double roomCost = roomM.getPrice();
+	    int nights = bookingM.getAmountOfNights();
+	    double discount;
+	    if(memLev == 1)
+	    {
+		discount = 100;
+		totalSpent = ((roomCost * nights) * rmBooked) - discount;
+		guestM.setTotalSpent(totalSpent);
+	    }else if(memLev == 2)
+	    {
+		discount = 200;
+		totalSpent = ((roomCost * nights) * rmBooked) - discount;
+		guestM.setTotalSpent(totalSpent);
+	    }
+	    else if(memLev == 3)
+	    {
+		discount = 300;
+		totalSpent = ((roomCost * nights) * rmBooked) - discount;
+		guestM.setTotalSpent(totalSpent);
 	    }else
-		return false;
+	    {
+		totalSpent = ((roomCost * nights) * rmBooked);
+		guestM.setTotalSpent(totalSpent);
+	    }
+	    System.out.println("You have booked a reservation with ID" + bookingM.getBID() + " total cost = " + guestM.getTotalSpent());
 	}
 }

@@ -2,11 +2,12 @@ package hbs.models;
 
 public class GuestModel extends Model
 {
-	private int totalSpent, memLev,gID;
+	private int  memLev,gID;
 	private String first_name, last_name;
 	private String memSince;
+	private double totalSpent;
 	
-	public GuestModel(int gID, String first_name, String last_name, String memSince, int totalSpent, int memLev) {
+	public GuestModel(int gID, String first_name, String last_name, String memSince, double totalSpent, int memLev) {
 		this.gID = gID;
 		this.first_name = first_name;
 		this.last_name = last_name;
@@ -23,12 +24,12 @@ public class GuestModel extends Model
 		return gID;
 	}
 	
-	public void setTotalSpent(int total)
+	public void setTotalSpent(double total)
 	{
 		this.totalSpent = total;
 	}
 	
-	public int getTotalSpent()
+	public double getTotalSpent()
 	{
 		return totalSpent;
 	}

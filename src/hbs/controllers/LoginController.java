@@ -10,7 +10,6 @@ import hbs.views.View;
 import hbs.managers.LoginManager;
 
 public class LoginController extends Controller {
-    	private MainMenuView view2;
 	public LoginController()
 	{
 	}
@@ -19,9 +18,9 @@ public class LoginController extends Controller {
 	{
 	    observers.add(view);
 	    LoginView loginView = (LoginView) view;
-	    LoginListener listener = new LoginListener(loginView);
-	    
+	    LoginListener listener = new LoginListener(loginView); 
             loginView.addLoginListener(listener);
+       //     System.out.println(observers.get(0));
 	}
 	
 	@Override
@@ -39,16 +38,15 @@ public class LoginController extends Controller {
 	    
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
-		System.out.println("HELP!!");
 		try {
-		    LoginManager manager = new LoginManager();
-		    if(manager.checkCredentials(view.getUsername(), view.getPassword()))
+		    LoginManager loginManager = new LoginManager();
+		    LoginController loginC = new LoginController();
+		    if(loginManager.checkCredentials(view.getUsername(), view.getPassword()))
 		    {
-			MainMenuView view2 = new MainMenuView();
-		  	 view2.MainMenuView();
+			loginC.notifyObservers();
 		    }
 		    else {
-			System.out.println("WTF");
+			System.out.println("Error-Wrong Credentials");
 		    }
 		}catch(Exception e) {
 		    
@@ -60,7 +58,7 @@ public class LoginController extends Controller {
 
 	@Override
 	public void notifyObservers() {
-		// TODO Auto-generated method stub
-		
+		MainMenuView view2 = new MainMenuView();
+		view2.MainMenuView();
 	}
 }

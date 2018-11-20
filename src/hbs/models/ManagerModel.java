@@ -79,12 +79,5 @@ public class ManagerModel extends Model implements IUser
 	public String getPassword()
 	{
 		return password;
-	}
-
-	@Override
-	public String getUsername() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
+	}	
 }

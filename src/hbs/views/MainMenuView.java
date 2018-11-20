@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import hbs.controllers.BookingController;
+import hbs.controllers.CancelBookingController;
 import hbs.controllers.Controller;
 
 public class MainMenuView extends View implements ActionListener{
@@ -27,11 +29,13 @@ public class MainMenuView extends View implements ActionListener{
 	btn2.setActionCommand("payment");
 	btn2.addActionListener(this);
 	control.add(btn2);
-	JButton btn3 = new JButton("Logout");
-	btn3.setActionCommand("logout");
+	JButton btn3 = new JButton("Cancel Booking");
+	btn3.setActionCommand("cancel");
 	btn3.addActionListener(this);
 	control.add(btn3);
-	
+	JButton btn4 = new JButton("Logout");
+	btn4.setActionCommand("logout");
+	btn4.addActionListener(this);
 	
 	mainPanel.add(control);
 	this.add(mainPanel);
@@ -46,7 +50,9 @@ public class MainMenuView extends View implements ActionListener{
 		    		
 				this.remove(mainPanel);
 				this.setVisible(false);
-		    	BookingView bookingView = new BookingView();
+				BookingView bookingV = new BookingView();
+				BookingController bookingC = new BookingController();
+				bookingC.addObserver(bookingV);
 				//System.exit(0);
 			
 		}
@@ -54,7 +60,16 @@ public class MainMenuView extends View implements ActionListener{
 		{
 			this.remove(mainPanel);
 			this.setVisible(false);
-	    	PaymentView paymentView = new PaymentView();
+			PaymentView paymentView = new PaymentView();
+		}
+		else if(btnPressed.equalsIgnoreCase("cancel"))
+		{
+		    this.remove(mainPanel);
+		    this.setVisible(false);
+		    CancelBookingView cancelV = new CancelBookingView();
+		    CancelBookingController cancelC = new CancelBookingController();
+		    cancelC.addObserver(cancelV);
+		    
 		}
 		else if(btnPressed.equalsIgnoreCase("logout"))
 		{
@@ -62,7 +77,7 @@ public class MainMenuView extends View implements ActionListener{
 		    this.setVisible(false);
 		    LoginView loginView = new LoginView();
 		}
-    }
+    }	
 	@Override
 	public void setMessage(String message) {
 		// TODO Auto-generated method stub
