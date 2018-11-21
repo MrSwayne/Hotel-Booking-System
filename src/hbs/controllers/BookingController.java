@@ -4,8 +4,6 @@ package hbs.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JOptionPane;
-
 import hbs.managers.BookingManager;
 import hbs.views.BookingView;
 import hbs.views.MainMenuView;
@@ -41,17 +39,11 @@ public class BookingController extends Controller {
 	    public void actionPerformed(ActionEvent arg0) {
 		try {
 			BookingManager bookingManager = new BookingManager();
-			BookingController bookingC = new BookingController();
-			if(bookingManager.checkBooking(view.getFirstName(),view.getLastName(),view.getDateIn(),view.getDateOut(),
-				view.getRoomAmount(),view.getRoomType()))
-			{
-			  bookingC.notifyObservers();
-			}
-		    
+			bookingManager.checkBooking(view.getFirstName(),view.getLastName(),view.getDateIn(),view.getDateOut(),
+				view.getRoomAmount(),view.getRoomType());	    
 		}catch(Exception e) {
 		    
 		}
-		
 	    }
 	    
 	}

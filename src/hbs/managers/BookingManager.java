@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import hbs.controllers.BookingController;
 import hbs.models.BookingModel;
 import hbs.models.GuestModel;
 import hbs.models.RoomModel;
@@ -18,7 +19,7 @@ public class BookingManager{
     public BookingManager()
 	{
 	}
-    public boolean checkBooking(String firstName, String lastName, String dateIn, String dateOut, String roomAmount,
+    public void checkBooking(String firstName, String lastName, String dateIn, String dateOut, String roomAmount,
 	    String roomType) 
     {
 	//hard coded at the moment -> change it later...
@@ -34,11 +35,8 @@ public class BookingManager{
 	    if(roomsAvailable(roomAmount,roomType))
 	    {
 		bookingProgram(firstName,lastName,dateIn,dateOut,roomAmount,roomType);
-		
-		return true;
 	    }
 	}
-	return false;
     }
 
 	public boolean dateValidation(String dateIn,String dateOut)
@@ -120,5 +118,7 @@ public class BookingManager{
 		guestM.setTotalSpent(totalSpent);
 	    }
 	    System.out.println("You have booked a reservation with ID" + bookingM.getBID() + " total cost = " + guestM.getTotalSpent());
+	    BookingController bookingC = new BookingController();
+	    bookingC.notifyObservers();
 	}
 }

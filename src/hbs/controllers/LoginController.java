@@ -40,14 +40,7 @@ public class LoginController extends Controller {
 	    public void actionPerformed(ActionEvent arg0) {
 		try {
 		    LoginManager loginManager = new LoginManager();
-		    LoginController loginC = new LoginController();
-		    if(loginManager.checkCredentials(view.getUsername(), view.getPassword()))
-		    {
-			loginC.notifyObservers();
-		    }
-		    else {
-			System.out.println("Error-Wrong Credentials");
-		    }
+		    loginManager.checkCredentials(view.getUsername(), view.getPassword());
 		}catch(Exception e) {
 		    
 		}

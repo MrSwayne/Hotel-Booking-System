@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import hbs.managers.CancelBookingManager;
 import hbs.views.CancelBookingView;
+import hbs.views.MainMenuView;
 import hbs.views.View;
 
 public class CancelBookingController extends Controller {
@@ -40,8 +41,7 @@ public class CancelBookingController extends Controller {
 	try {
 		CancelBookingManager cancelManager = new CancelBookingManager();
 		cancelManager.cancelBooking(view.getBookingID(),view.getPassword());
-		
-	    
+		    
 	}catch(Exception e) {
 	    
 	}
@@ -52,8 +52,8 @@ public class CancelBookingController extends Controller {
 
     @Override
     public void notifyObservers() {
-	// TODO Auto-generated method stub
-	
+    	MainMenuView menu = new MainMenuView();
+	    menu.MainMenuView();
     }
 
 }
