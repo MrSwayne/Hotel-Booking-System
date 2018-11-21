@@ -3,6 +3,7 @@ package hbs.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import hbs.managers.PaymentManager;
 import hbs.models.PaymentModel;
 import hbs.views.PaymentView;
 import hbs.views.View;
@@ -35,10 +36,16 @@ public class PaymentController extends Controller {
 		public void actionPerformed(ActionEvent arg0) {
 			String name = null, cNumber = null, expiry = null, security = null;
 			try {
+				
+				System.out.println("Weeell");
+				
 				name = view.getName();
 				cNumber = view.getcNumber();
 				expiry = view.getExpiry();
 				security = view.getSecurity();
+				
+				PaymentManager paymentManager = new PaymentManager();
+				paymentManager.processPayment(name, cNumber, expiry, security);
 				
 				//model.setName(name);
 				
@@ -50,16 +57,6 @@ public class PaymentController extends Controller {
 		
 	}
 	
-	public void processPayment(String firstName, String lastName, String cNumber) {		
-		//Stripe.apiKey = API_KEY;
-		
-		//GuestModel guest = new GuestModel();
-		//guest.setFirstName(firstName);
-		
-		//guest.setLastName(lastName);
-		//guest.getCredentials
-	}
-
 	@Override
 	public void notifyObservers() {
 		// TODO Auto-generated method stub
