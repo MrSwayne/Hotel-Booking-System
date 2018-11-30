@@ -2,8 +2,14 @@ package hbs.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class DatabaseHelper {
 	
@@ -51,12 +57,35 @@ public class DatabaseHelper {
 		return conn;
 	}
 	
-	//Gets data from database and returns as a hashmap
-	public HashMap<String, String> executeQuery(String sql) {
+	//Gets data from database and returns as a resultSet
+	public synchronized Query executeQuery(String sql) {
+		System.out.println("Executing " + sql);
 		
-		//TODO
-		// Convert result of sql query to hashmap
-		HashMap<String,String> map = new HashMap<String, String>();
-		return map;
+		
+		try(
+			Connection conn = this.conn();
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			ResultSet resultSet = stmt.executeQuery()
+		) {
+			Query query = new Query();
+			
+			ResultSetMetaData metaData = resultSet.getMetaData();
+			int columnCount = metaData.getColumnCount();
+			
+			while(resultSet.next()) {
+				Row row = new Row();
+				for(int i = 0;i < columnCount;i++) 
+					row.add(metaData.getColumnName(i + 1), resultSet.getString(metaData.getColumnName(i+1)));
+				query.add(row);
+			}
+			
+			return query;
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		//
+		System.err.println("Nothing found");
+		return null;
 	}
 }
