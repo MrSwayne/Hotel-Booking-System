@@ -68,4 +68,9 @@ public class GuestModel extends Model
 	{
 		return memSince;
 	}
+	/*DATABASE
+	public void getInformation() {
+	    
+	    
+	}*/
 }

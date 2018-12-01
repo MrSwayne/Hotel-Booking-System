@@ -1,9 +1,15 @@
 package hbs.models;
 
+
+
+import hbs.database.DatabaseHelper;
+import hbs.database.Query;
+
 public class BookingModel extends Model
 {
 	private int gID, rID, bID,nights; 
 	private String date_in, date_out;
+	final static String dateFormat = "dd/MM/yy";
 	
 	public BookingModel()
 	{
@@ -59,6 +65,38 @@ public class BookingModel extends Model
 	{
 	    this.nights=nights;
 	}
+
+	public void getInformation() {
+	    DatabaseHelper db = DatabaseHelper.getInstance();
+	    Query query = db.executeQuery("select * from bookings;");
+
+	  	for(int i=0;i<query.size();i++)
+	  	{
+	  	  int bID = Integer.parseInt(query.get(i).get("Bid"));
+	  	  
+		    String date_In = (query.get(i).get("dateIn"));
+		    String date_Out = (query.get(i).get("dateOut"));	  
+	  	  
+	  	  
+	  	  if(this.getBID()!=bID)
+	  	  {
+	  	      if(this.getDateIn().equals(date_In) && this.getDateOut().equals(date_Out))
+	  	      {
+	  		  System.out.println("Those dates are already taken");
+	  	      }
+	  	      else {
+	  		  //do something
+	  	      }
+	  	  }
+	  	  else
+	  	  {
+	  	      System.out.println("This bookign alreayd exists");
+	  	  }
+	  	  
+	  	}
+	    
+	}
+
 
 	//Method to get all the information for booking in db
 	//public void getBookings()

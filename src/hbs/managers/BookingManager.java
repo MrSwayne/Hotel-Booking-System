@@ -6,6 +6,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import hbs.controllers.BookingController;
+import hbs.decorator.Discount;
+import hbs.decorator.Gold;
+import hbs.decorator.Platinum;
+import hbs.decorator.Silver;
 import hbs.models.BookingModel;
 import hbs.models.GuestModel;
 import hbs.models.RoomModel;
@@ -23,11 +27,15 @@ public class BookingManager{
 	    String roomType) 
     {
 	//hard coded at the moment -> change it later...
+	bookingM.getInformation();
+	//guestM.getInformation(); DB
+	//roomM.getInfortmation(); DB
 	guestM.setMemLev(1);
 	roomM.setRoomNumbers(50);
 	roomM.setType("Double");
 	roomM.setPrice(60);
 	roomM.setAvailability(true);
+	
 	//check if the name correspond to any in the db otherwise set everything as a new customer.
 	if(dateValidation(dateIn,dateOut))
 	{
@@ -90,6 +98,9 @@ public class BookingManager{
 	    bookingM.setBID(304);
 	    guestM.setFirstName(firstName);
 	    guestM.setLastName(lastName);
+	    Discount silver = new Silver();
+	    Discount gold = new Gold();
+	    Discount plat = new Platinum();
 	    int memLev = guestM.getMemLev();
 	    int rmBooked = Integer.parseInt(roomAmount);
 	    double totalSpent;
@@ -98,18 +109,22 @@ public class BookingManager{
 	    double discount;
 	    if(memLev == 1)
 	    {
-		discount = 100;
+		silver.setDiscount(100.00);
+		discount = silver.getDiscount();
+		System.out.println(discount);
 		totalSpent = ((roomCost * nights) * rmBooked) - discount;
 		guestM.setTotalSpent(totalSpent);
 	    }else if(memLev == 2)
 	    {
-		discount = 200;
+		gold.setDiscount(200.00);
+		discount = gold.getDiscount();
 		totalSpent = ((roomCost * nights) * rmBooked) - discount;
 		guestM.setTotalSpent(totalSpent);
 	    }
 	    else if(memLev == 3)
 	    {
-		discount = 300;
+		plat.setDiscount(300.00);
+		discount = plat.getDiscount();
 		totalSpent = ((roomCost * nights) * rmBooked) - discount;
 		guestM.setTotalSpent(totalSpent);
 	    }else

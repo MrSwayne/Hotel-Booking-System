@@ -2,6 +2,9 @@ package hbs.models;
 
 
 
+import hbs.database.DatabaseHelper;
+import hbs.database.Query;
+
 //import java.sql.Connection;
 
 import hbs.interfaces.IUser;
@@ -31,31 +34,22 @@ public class LoginModel extends Model implements IUser
 		this.password = password;
 	}
 	//Method for setting the password and username from db
-	/*public void getCredentials()
+	public void getCredentials()
 	  {
-	  	try
-	 	{
-	  		//COnnecting to database etc.
-	  		String select= ("Select * from users where FirstName = ? AND Password = ?");
-	  		ResultSet rs = select.executeQuery();
-	  		if(rs.next()) {
-	  		    password = rs.getString("password");
-	  		}else {
-	  		    password = "";
-	  		}
-	  	}catch (ClassNotFoundException e) {
-	  	    e.printStackTrace();
-	  	}catch (SQLException e) {
-	  	    e.printStackTrace();
+	  	DatabaseHelper db = DatabaseHelper.getInstance();
+	  	Query query = db.executeQuery("select * from users;");
+	  	
+	  	for(int i=0;i<query.size();i++)
+	  	{
+	  	  String username = query.get(i).get("FirstName");
+	  	  String password = query.get(i).get("Password");
+	  	  if(this.getFirstName().equals(username)) {
+	  	      this.setPassword(password);
+	  	  }
 	  	}
-	  	finally {
-	  	    try {
-	  		conn.close();
-	  	    }catch (SQLException e) {
-	  		e.printStackTrace();
-	  	    }
-	  	}
-	  }*/
+	  	
+	  	
+	  }
 
 	@Override
 	public int getUID() {

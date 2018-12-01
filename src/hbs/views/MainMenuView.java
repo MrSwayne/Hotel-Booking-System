@@ -17,7 +17,7 @@ public class MainMenuView extends View implements ActionListener{
     
     public  void MainMenuView() {
 	this.setTitle("Login");
-	mainPanel = new JPanel(new GridLayout(3,1));
+	mainPanel = new JPanel(new GridLayout(10,5));
 	
 	JPanel control = new JPanel();
 	control.setVisible(true);
@@ -36,7 +36,11 @@ public class MainMenuView extends View implements ActionListener{
 	JButton btn4 = new JButton("Logout");
 	btn4.setActionCommand("logout");
 	btn4.addActionListener(this);
-	
+	control.add(btn4);
+	JButton btn5 = new JButton("Check IN/OUT");
+	btn5.setActionCommand("check");
+	btn5.addActionListener(this);
+	control.add(btn5);
 	mainPanel.add(control);
 	this.add(mainPanel);
 	this.pack();
@@ -76,6 +80,12 @@ public class MainMenuView extends View implements ActionListener{
 		    this.remove(mainPanel);
 		    this.setVisible(false);
 		    LoginView loginView = new LoginView();
+		}
+		else if(btnPressed.equalsIgnoreCase("check"))
+		{
+		    this.remove(mainPanel);
+		    this.setVisible(false);
+		    CheckView checkView = new CheckView();
 		}
     }	
 	@Override

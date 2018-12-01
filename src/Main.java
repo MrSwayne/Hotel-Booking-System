@@ -19,8 +19,12 @@ public class Main {
     		System.out.println(query.get(i).get("FirstName"));
     	}
     
-	PaymentView payV = new PaymentView();
+	/*PaymentView payV = new PaymentView();
 	PaymentController payC = new PaymentController();
-	payC.addObserver(payV);
+	payC.addObserver(payV);*/
+    	
+    	LoginView loginV = new LoginView();
+    	LoginController loginC = new LoginController();
+    	loginC.addObserver(loginV);
     }
 }

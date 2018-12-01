@@ -65,4 +65,10 @@ public class RoomModel extends Model
 	{
 		return price;
 	}
+
+	/*DATABASE
+	public void getInfortmation() {
+	    // TODO Auto-generated method stub
+	    
+	}*/
 }
