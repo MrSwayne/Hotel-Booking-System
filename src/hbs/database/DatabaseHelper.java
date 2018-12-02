@@ -57,26 +57,23 @@ public class DatabaseHelper {
 		return conn;
 	}
 	
-	//Gets data from database and returns as a resultSet
+	//Gets data from database and returns as a hbs.database.Query
 	public synchronized Query executeQuery(String sql) {
 		System.out.println("Executing " + sql);
-		
-		
 		try(
 			Connection conn = this.conn();
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			ResultSet resultSet = stmt.executeQuery()
 		) {
 			Query query = new Query();
 			
-			ResultSetMetaData metaData = resultSet.getMetaData();
-			int columnCount = metaData.getColumnCount();
+			if(sql.toUpperCase().startsWith("SELECT")) {
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				ResultSet resultSet = stmt.executeQuery();
+				query = resultSetToQuery(resultSet);
+			}
 			
-			while(resultSet.next()) {
-				Row row = new Row();
-				for(int i = 0;i < columnCount;i++) 
-					row.add(metaData.getColumnName(i + 1), resultSet.getString(metaData.getColumnName(i+1)));
-				query.add(row);
+			else {
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				stmt.executeUpdate();
 			}
 			
 			return query;
@@ -87,5 +84,24 @@ public class DatabaseHelper {
 		//
 		System.err.println("Nothing found");
 		return null;
+	}
+	
+	private Query resultSetToQuery(ResultSet resultSet) {
+		Query query = new Query();
+		ResultSetMetaData metaData;
+		try {
+			metaData = resultSet.getMetaData();
+			int columnCount = metaData.getColumnCount();
+			
+			while(resultSet.next()) {
+				Row row = new Row();
+				for(int i = 0;i < columnCount;i++) 
+					row.add(metaData.getColumnName(i + 1), resultSet.getString(metaData.getColumnName(i+1)));
+				query.add(row);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return query;
 	}
 }

@@ -18,6 +18,14 @@ public class Row {
 		columnNames = new LinkedList<String>();
 	}
 	
+	public int getColsSize() {
+		return columnNames.size();
+	}
+	
+	public String getColName(int i) {
+		return columnNames.get(i);
+	}
+	
 	public void add(String columnName, String result) {
 		if(!map.containsKey(columnName))
 			columnNames.add(columnName);
