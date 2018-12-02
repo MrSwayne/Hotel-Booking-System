@@ -1,8 +1,10 @@
 package hbs.models;
 import java.util.*;
 import hbs.interfaces.IUser;
+import hbs.database.DatabaseHelper;
+import hbs.database.Query;
 
-public class ManagerModel extends Model implements IUser
+public class ManagerModel extends UserModel implements IUser
 {
 	private int uID, hID;
 	private String firstName, lastName, password;
@@ -79,5 +81,16 @@ public class ManagerModel extends Model implements IUser
 	public String getPassword()
 	{
 		return password;
-	}	
+	}
+	
+	public double getTotalWages()
+	{
+		double totalWages = 0.0;
+		for (UserModel u : subordinates)
+		{
+			totalWages += u.getWages();
+		}
+		return totalWages;
+	}
+	
 }
