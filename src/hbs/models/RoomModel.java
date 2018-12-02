@@ -1,5 +1,8 @@
 package hbs.models;
 
+import hbs.database.DatabaseHelper;
+import hbs.database.Query;
+
 public class RoomModel extends Model
 {
 	private int  roomNumbers,roomNo, hID, rID;
@@ -66,9 +69,26 @@ public class RoomModel extends Model
 		return price;
 	}
 
-	/*DATABASE
+
 	public void getInfortmation() {
-	    // TODO Auto-generated method stub
+	    DatabaseHelper db = DatabaseHelper.getInstance();
+	    Query query = db.executeQuery("select * from rooms;");
 	    
-	}*/
+	    for(int i=0;i<query.size();i++)
+	  	{
+	  	  setRoomNumbers(Integer.parseInt((query.get(i).get("Rnumber"))));
+	  	  setType( query.get(i).get("Type"));
+	  	  
+	  	  int temp = Integer.parseInt(query.get(i).get("Status"));
+	  	  if(temp==1)
+	  	  {
+	  	      setAvailability(true);
+	  	  }else
+	  	  {
+	  	      setAvailability(false);
+	  	  }
+	  	  setPrice(Integer.parseInt(query.get(i).get("Price")));
+	  	}
+	    
+	}
 }

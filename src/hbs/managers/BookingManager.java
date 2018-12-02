@@ -29,13 +29,8 @@ public class BookingManager{
 	//hard coded at the moment -> change it later...
 	bookingM.getInformation();
 	//guestM.getInformation(); DB
-	//roomM.getInfortmation(); DB
+	roomM.getInfortmation(); 
 	guestM.setMemLev(1);
-	roomM.setRoomNumbers(50);
-	roomM.setType("Double");
-	roomM.setPrice(60);
-	roomM.setAvailability(true);
-	
 	//check if the name correspond to any in the db otherwise set everything as a new customer.
 	if(dateValidation(dateIn,dateOut))
 	{
@@ -95,7 +90,6 @@ public class BookingManager{
 	
 	public void bookingProgram(String firstName, String lastName, String dateIn, String dateOut, String roomAmount,String roomType)
 	{
-	    bookingM.setBID(304);
 	    guestM.setFirstName(firstName);
 	    guestM.setLastName(lastName);
 	    Discount silver = new Silver();
@@ -111,15 +105,16 @@ public class BookingManager{
 	    {
 		silver.setDiscount(100.00);
 		discount = silver.getDiscount();
-		System.out.println(discount);
 		totalSpent = ((roomCost * nights) * rmBooked) - discount;
 		guestM.setTotalSpent(totalSpent);
+		//bookingM.setBooking();
 	    }else if(memLev == 2)
 	    {
 		gold.setDiscount(200.00);
 		discount = gold.getDiscount();
 		totalSpent = ((roomCost * nights) * rmBooked) - discount;
 		guestM.setTotalSpent(totalSpent);
+		//bookingM.setBooking();
 	    }
 	    else if(memLev == 3)
 	    {
@@ -127,10 +122,12 @@ public class BookingManager{
 		discount = plat.getDiscount();
 		totalSpent = ((roomCost * nights) * rmBooked) - discount;
 		guestM.setTotalSpent(totalSpent);
+		//bookingM.setBooking();
 	    }else
 	    {
 		totalSpent = ((roomCost * nights) * rmBooked);
 		guestM.setTotalSpent(totalSpent);
+		//bookingM.setBooking();
 	    }
 	    System.out.println("You have booked a reservation with ID" + bookingM.getBID() + " total cost = " + guestM.getTotalSpent());
 	    BookingController bookingC = new BookingController();

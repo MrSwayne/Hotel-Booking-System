@@ -96,8 +96,9 @@ public class BookingModel extends Model
 	  	}
 	    
 	}
-
-
-	//Method to get all the information for booking in db
-	//public void getBookings()
+	/*MEthod to insert new booking into the db
+	public void setBooking() {
+	    DatabaseHelper db = DatabaseHelper.getInstance();
+	     db.executeQuery("INSERT INTO bookings VALUES(default,"+this.getDateIn()+","+this.getDateOut()+","+this.getGID()+"," + this.getRID()+");");	    
+	}*/
 }
