@@ -15,9 +15,9 @@ import hbs.controllers.Controller;
 public class MainMenuView extends View implements ActionListener{
     JPanel mainPanel = new JPanel();
     
-    public  void MainMenuView() {
+    public void MainMenuView() {
 	this.setTitle("Login");
-	mainPanel = new JPanel(new GridLayout(10,5));
+	mainPanel = new JPanel(new GridLayout(10,6));
 	
 	JPanel control = new JPanel();
 	control.setVisible(true);
@@ -41,6 +41,10 @@ public class MainMenuView extends View implements ActionListener{
 	btn5.setActionCommand("check");
 	btn5.addActionListener(this);
 	control.add(btn5);
+	JButton btn6 = new JButton("Management");
+	btn6.setActionCommand("manage");
+	btn6.addActionListener(this);
+	control.add(btn6);
 	mainPanel.add(control);
 	this.add(mainPanel);
 	this.pack();
@@ -86,6 +90,13 @@ public class MainMenuView extends View implements ActionListener{
 		    this.remove(mainPanel);
 		    this.setVisible(false);
 		    CheckView checkView = new CheckView();
+		}
+		else if(btnPressed.equalsIgnoreCase("manage"))
+		{
+			this.remove(mainPanel);
+			this.setVisible(false);
+			ManagementView manageView = new ManagementView();
+			
 		}
     }	
 	@Override
