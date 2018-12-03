@@ -110,18 +110,18 @@ public class RoomModel extends Model
 	    
 	    for(int i=0;i<query.size();i++)
 	  	{
-	  	  setAmountOfRooms(Integer.parseInt((query.get(i).get("Rnumber"))));
-	  	  setType( query.get(i).get("Type"));
+	  	  this.setAmountOfRooms(Integer.parseInt((query.get(i).get("Rnumber"))));
+	  	  this.setType( query.get(i).get("Type"));
 	  	  
 	  	  int temp = Integer.parseInt(query.get(i).get("Status"));
 	  	  if(temp==1)
 	  	  {
-	  	      setAvailability(true);
+	  	      this.setAvailability(true);
 	  	  }else
 	  	  {
-	  	      setAvailability(false);
+	  	      this.setAvailability(false);
 	  	  }
-	  	  setPrice(Integer.parseInt(query.get(i).get("Price")));
+	  	  this.setPrice(Integer.parseInt(query.get(i).get("Price")));
 	  	}
 	    
 	}

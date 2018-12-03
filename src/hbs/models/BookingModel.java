@@ -20,6 +20,10 @@ public class BookingModel extends Model
 	{
 		return gID;
 	}
+	public void setGID(int gID)
+	{
+		this.gID=gID;
+	}
 	
 	public int getRID()
 	{
@@ -69,14 +73,14 @@ public class BookingModel extends Model
 	public void getInformation() {
 	    DatabaseHelper db = DatabaseHelper.getInstance();
 	    Query query = db.executeQuery("select * from bookings;");
-
+	    Query query2 = db.executeQuery("Select * from guests");
 	  	for(int i=0;i<query.size();i++)
 	  	{
 	  	  int bID = Integer.parseInt(query.get(i).get("Bid"));
 	  	  
 		    String date_In = (query.get(i).get("dateIn"));
 		    String date_Out = (query.get(i).get("dateOut"));	  
-	  	  
+		   this.setGID(Integer.parseInt(query2.get(i).get("Gid")));
 	  	  
 	  	  if(this.getBID()!=bID)
 	  	  {
@@ -96,9 +100,10 @@ public class BookingModel extends Model
 	  	}
 	    
 	}
-	/*MEthod to insert new booking into the db
+	//MEthod to insert new booking into the db
 	public void setBooking() {
 	    DatabaseHelper db = DatabaseHelper.getInstance();
-	     db.executeQuery("INSERT INTO bookings VALUES(default,"+this.getDateIn()+","+this.getDateOut()+","+this.getGID()+"," + this.getRID()+");");	    
-	}*/
+	     db.executeQuery("INSERT INTO bookings VALUES(default,'"+this.getDateIn()+"','"+this.getDateOut()+"','"+this.getGID()+"','" + this.getRID()+"');");	  
+	     db.executeQuery("INSERT INTO bookings VALUES(default,'20/06/19','30/06/10','2','0');");	    
+	}
 }

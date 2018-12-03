@@ -28,9 +28,14 @@ public class BookingManager{
     {
 	//hard coded at the moment -> change it later...
 	bookingM.getInformation();
-	//guestM.getInformation(); DB
-	roomM.getInfortmation(); 
-	guestM.setMemLev(1);
+	//guestM.getInformation(); 
+	//roomM.getInfortmation(); 
+	roomM.setRoomNumber(50);	
+	roomM.setType("Double");	
+	roomM.setPrice(60);	
+	roomM.setAvailability(true);
+	//guestM.setMemLev(1);
+	//bookingM.setGID(0);
 	//check if the name correspond to any in the db otherwise set everything as a new customer.
 	if(dateValidation(dateIn,dateOut))
 	{
@@ -75,7 +80,7 @@ public class BookingManager{
 		if(roomAmount.matches("[0-9]+"))
 		{
 		    int rmNumber = Integer.parseInt(roomAmount);
-		    if((rmNumber <= roomM.getRoomNumbers())||roomType.equals(roomM.getType()))
+		    if((rmNumber <= 50||roomType.equals(roomM.getType())))
 		    {
 			if(roomM.getAvailability())
 			{
@@ -107,14 +112,14 @@ public class BookingManager{
 		discount = silver.getDiscount();
 		totalSpent = ((roomCost * nights) * rmBooked) - discount;
 		guestM.setTotalSpent(totalSpent);
-		//bookingM.setBooking();
+		bookingM.setBooking();
 	    }else if(memLev == 2)
 	    {
 		gold.setDiscount(200.00);
 		discount = gold.getDiscount();
 		totalSpent = ((roomCost * nights) * rmBooked) - discount;
 		guestM.setTotalSpent(totalSpent);
-		//bookingM.setBooking();
+		bookingM.setBooking();
 	    }
 	    else if(memLev == 3)
 	    {
@@ -122,7 +127,7 @@ public class BookingManager{
 		discount = plat.getDiscount();
 		totalSpent = ((roomCost * nights) * rmBooked) - discount;
 		guestM.setTotalSpent(totalSpent);
-		//bookingM.setBooking();
+		bookingM.setBooking();
 	    }else
 	    {
 		totalSpent = ((roomCost * nights) * rmBooked);
