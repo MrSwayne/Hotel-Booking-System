@@ -26,10 +26,10 @@ public class PaymentView extends View {
 	private JTextField securityF;
 	private JLabel errorMsg;
 	
-	private JButton payBttn;
+	private JButton payBttn = new JButton("Pay");
 	private JButton cancelBttn;
 	
-	public void PaymentView() {
+	public PaymentView() {
 			JPanel container = new JPanel();
 			container.setLayout(new BoxLayout(container, BoxLayout.PAGE_AXIS));
 			nameF = new JTextField("", 15);
@@ -59,7 +59,6 @@ public class PaymentView extends View {
 			container.add(securityPanel);
 		
 			JPanel controlPanel = new JPanel();
-			payBttn = new JButton("Pay");
 			cancelBttn = new JButton("Cancel");
 			controlPanel.add(cancelBttn);
 			controlPanel.add(payBttn);	

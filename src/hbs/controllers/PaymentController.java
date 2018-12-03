@@ -11,7 +11,7 @@ import hbs.views.View;
 public class PaymentController extends Controller {
 	
 	private static final String API_KEY = "sk_test_I4018YUPlMB3aA4fRCnSDUag";
-	
+	private String msg = "";
 	private PaymentView view;
 	private PaymentModel model;
 	
@@ -36,22 +36,20 @@ public class PaymentController extends Controller {
 		public void actionPerformed(ActionEvent arg0) {
 			String name = null, cNumber = null, expiry = null, security = null;
 			try {
-				
-				System.out.println("Weeell");
-				
 				name = view.getName();
 				cNumber = view.getcNumber();
 				expiry = view.getExpiry();
 				security = view.getSecurity();
 				
 				PaymentManager paymentManager = new PaymentManager();
-				paymentManager.processPayment(name, cNumber, expiry, security);
+				//paymentManager.processPayment(name, cNumber, expiry, security);
 				
 				//model.setName(name);
 				
 				
 			} catch(Exception e) {
-				
+				msg = e.getMessage();
+				notifyObservers();
 			}
 		}
 		
@@ -59,7 +57,9 @@ public class PaymentController extends Controller {
 	
 	@Override
 	public void notifyObservers() {
-		// TODO Auto-generated method stub
+		for(int i = 0;i < this.observers.size();i++) {
+			this.observers.get(i).setMessage(this.msg);
+		}
 		
 	}
 }

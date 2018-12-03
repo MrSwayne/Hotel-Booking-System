@@ -29,7 +29,7 @@ public class BookingManager{
 	//hard coded at the moment -> change it later...
 	bookingM.getInformation();
 	//guestM.getInformation(); DB
-	roomM.getInfortmation(); 
+	roomM.getInformation(); 
 	guestM.setMemLev(1);
 	//check if the name correspond to any in the db otherwise set everything as a new customer.
 	if(dateValidation(dateIn,dateOut))
@@ -88,9 +88,8 @@ public class BookingManager{
 	    return false; 
 	}
 	
-	public void bookingProgram(String firstName, String lastName, String dateIn, String dateOut, String roomAmount,String roomType)
-	{
-	    guestM.setFirstName(firstName);
+	public double calculateTotalSpent(String firstName, String lastName, String dateIn, String dateOut, String roomAmount,String roomType) {
+		guestM.setFirstName(firstName);
 	    guestM.setLastName(lastName);
 	    Discount silver = new Silver();
 	    Discount gold = new Gold();
@@ -129,7 +128,13 @@ public class BookingManager{
 		guestM.setTotalSpent(totalSpent);
 		//bookingM.setBooking();
 	    }
-	    System.out.println("You have booked a reservation with ID" + bookingM.getBID() + " total cost = " + guestM.getTotalSpent());
+	    return totalSpent;
+	}
+	
+	public void bookingProgram(String firstName, String lastName, String dateIn, String dateOut, String roomAmount,String roomType)
+	{
+	    double totalSpent = calculateTotalSpent(firstName, lastName, dateIn, dateOut, roomAmount, roomType);
+	    System.out.println("You have booked a reservation with ID" + bookingM.getBID() + " total cost = " + totalSpent);
 	    BookingController bookingC = new BookingController();
 	    bookingC.notifyObservers();
 	}

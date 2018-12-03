@@ -1,16 +1,23 @@
 package hbs.models;
 
+import java.sql.ResultSet;
+import java.util.HashMap;
+
+import hbs.database.DatabaseHelper;
+import hbs.database.Query;
+
 public class GuestModel extends Model
 {
-	private int  memLev,gID;
-	private String first_name, last_name;
-	private String memSince;
+	private int memLev,gID;
 	private double totalSpent;
+	private String firstName = null, lastName = null;
+	private java.util.Date memSince = null;
 	
-	public GuestModel(int gID, String first_name, String last_name, String memSince, double totalSpent, int memLev) {
+	
+	public GuestModel(int gID, String firstName, String lastName, java.util.Date memSince, int totalSpent, int memLev) {
 		this.gID = gID;
-		this.first_name = first_name;
-		this.last_name = last_name;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.memSince = memSince;
 		this.totalSpent = totalSpent;
 		this.memLev = memLev;
@@ -44,33 +51,56 @@ public class GuestModel extends Model
 		return memLev;
 	}
 	
-	public void setFirstName(String first_name)
+	public void setFirstName(String firstName)
 	{
-		this.first_name = first_name;
+		this.firstName = firstName;
 	}
 	
 	public String getFirstName()
 	{
-		return first_name;
+		return firstName;
 	}
 	
-	public void setLastName(String last_name)
+	public void setLastName(String lastName)
 	{
-		this.last_name = last_name;
+		this.lastName = lastName;
 	}
 	
 	public String getLastName()
 	{
-		return this.last_name;
+		return this.lastName;
 	}
 	
-	public String getMemSince()
+	public java.util.Date getMemSince()
 	{
 		return memSince;
 	}
-	/*DATABASE
-	public void getInformation() {
-	    
-	    
-	}*/
+	
+	public boolean getCredentials() {
+		DatabaseHelper db = DatabaseHelper.getInstance();
+		
+		if(this.firstName == null && this.lastName == null) return false;
+		
+		String sql = "SELECT DISTINCT(Gid) FROM GUESTS WHERE ";
+		
+		if(gID == 0) {
+			
+			if(this.firstName != null ) {
+				sql += "FirstName = '" + this.firstName + "'";
+			}
+			if(this.lastName != null) {
+				sql += " AND LastName = '" + this.lastName + "'";
+			}
+		} else {
+			sql += "GID = '" + this.gID + "'";
+		}
+		
+		sql += ";";
+		
+		Query query = db.executeQuery(sql);
+	
+		if(query.isEmpty())	return false;
+		this.gID = (Integer.parseInt(query.get(0).get("Gid")));
+		return true;
+	}
 }

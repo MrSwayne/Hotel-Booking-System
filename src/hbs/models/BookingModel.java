@@ -101,4 +101,10 @@ public class BookingModel extends Model
 	    DatabaseHelper db = DatabaseHelper.getInstance();
 	     db.executeQuery("INSERT INTO bookings VALUES(default,"+this.getDateIn()+","+this.getDateOut()+","+this.getGID()+"," + this.getRID()+");");	    
 	}*/
+
+	@Override
+	public boolean getCredentials() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

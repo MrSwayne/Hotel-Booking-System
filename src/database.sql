@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS rooms (
     Rid int  NOT NULL AUTO_INCREMENT,
     Rnumber int  NOT NULL,
     Type varchar(40)  NOT NULL,
-    Status varchar(10)  NOT NULL,
+    available boolean  default TRUE,
     Price int  DEFAULT 0,
     Hid int  NOT NULL,
     PRIMARY KEY (Rid),
@@ -26,8 +26,8 @@ CREATE TABLE IF NOT EXISTS guests (
     firstName varchar(40)  NOT NULL,
     lastName varchar(40)  NOT NULL,
     memberSince timestamp  DEFAULT current_timestamp,
-    TotalSpent int  DEFAULT 0,
-    MembershipLevel int DEFAULT 0,
+    totalSpent int  DEFAULT 0,
+    membershipLevel int DEFAULT 0,
     PRIMARY KEY (Gid)
 );
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS guests (
 CREATE TABLE IF NOT EXISTS bookings (
     Bid int  NOT NULL AUTO_INCREMENT,
     dateIn timestamp  DEFAULT current_timestamp,
-    dateOut timestamp  NOT NULL,
+    dateOut timestamp  DEFAULT current_timestamp,
     Gid int  NOT NULL,
     Rid int  NOT NULL,
     PRIMARY KEY (Bid),
@@ -79,8 +79,6 @@ INSERT INTO hotels VALUES (default, 'Bronze Motel','France','Lyon',80);
 INSERT INTO hotels VALUES (default, 'Stellar Hotel','Spain','Barcelona',110);
 INSERT INTO hotels VALUES (default, 'Atlantic Hotel','Portugal','Lisbon',60);
 INSERT INTO hotels VALUES (default, 'Drizzle Hotel','USA','New York',500);
-
-INSERT INTO rooms VALUES (default, 2, 'Single', 'avaliable', 200, 0);
 
 
 INSERT INTO users VALUES (default, 'Caolan','McDonagh',TRUE,'nana',100000);
@@ -289,3 +287,6 @@ INSERT INTO guests VALUES (default, 'Lucius','Mcguire','26/10/2018', default, de
 INSERT INTO guests VALUES (default, 'Elizabeth','Joseph','28/10/2018', default, default);
 INSERT INTO guests VALUES (default, 'Stacy','Gray','28/10/2018', default, default);
 INSERT INTO guests VALUES (default, 'Germane','Gilmore','26/10/2018', default, default);
+
+INSERT INTO rooms VALUES(default, 50, 'single', default, 500, 1);
+INSERT INTO rooms VALUES (default, 2, 'Single', default, 200, 2);
