@@ -103,7 +103,7 @@ public class BookingModel extends Model
 	//MEthod to insert new booking into the db
 	public void setBooking() {
 	    DatabaseHelper db = DatabaseHelper.getInstance();
-	     db.executeQuery("INSERT INTO bookings VALUES(default,'"+this.getDateIn()+"','"+this.getDateOut()+"','"+this.getGID()+"','" + this.getRID()+"');");	  
-	     db.executeQuery("INSERT INTO bookings VALUES(default,'20/06/19','30/06/10','2','0');");	    
+	     db.executeQuery("INSERT INTO bookings VALUES(default,'"+this.getDateIn()+"','"+this.getDateOut()+"',"+this.getGID()+"," + this.getRID()+");");	  
+	     db.executeQuery("INSERT INTO bookings VALUES(default,'20/06/19','30/06/10',2,1);");	    
 	}
 }
