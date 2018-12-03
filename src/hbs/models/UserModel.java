@@ -98,7 +98,7 @@ public class UserModel extends Model implements IUser, IEmployee
 	public void setUserDetails(int uNum, String firstName, String lastName, String password, int wages)
 	{
 		DatabaseHelper db = DatabaseHelper.getInstance();
-	  	db.executeQuery("update rooms set FirstName = " + firstName + ", LastName = " + lastName + ", Password = " + password + ", Wages = " + wages + " where Uid = " + uNum);
+	  	db.executeQuery("update users set FirstName = " + firstName + ", LastName = " + lastName + ", Password = " + password + ", Wages = " + wages + " where Uid = " + uNum);
 	}
 	
 }
